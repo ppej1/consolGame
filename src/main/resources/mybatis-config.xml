@@ -11,5 +11,6 @@
 	
 	<mappers>
 		<mapper resource="mappers/MemberMapper.xml" />
+		<mapper resource="mappers/GameListMapper.xml" />
 	</mappers>
 </configuration>

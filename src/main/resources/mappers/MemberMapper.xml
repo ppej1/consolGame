@@ -52,7 +52,10 @@
 	FROM
 		consoluser
 	WHERE
-		userid = #{userid} AND userpwd = #{userpwd}
+		userid = #{userid} 
+		<if test="userpwd != null">
+		AND userpwd = #{userpwd}
+		</if>
 	</select>
 	
 	

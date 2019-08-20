@@ -1,13 +1,22 @@
 package global.sesoc.ConsolGame.Controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import global.sesoc.ConsolGame.dao.GameListRepository;
+import global.sesoc.ConsolGame.dto.ConsolGame;
 
 @Controller
-public class gameListController {
+public class GameListController {
+	@Autowired
+	GameListRepository repo;
 	
-	
+	/*이동 */
 	@RequestMapping(value = "/gameList", method = RequestMethod.GET)
 	public String gameList(){
 		
@@ -49,4 +58,16 @@ public class gameListController {
 		
 		return "board/userInfo";
 	}
+	
+	//리스트 
+	@RequestMapping(value = "/listOfGame", method = RequestMethod.POST)
+	@ResponseBody 
+	public List<ConsolGame> listOfGame(ConsolGame consolGame){
+		System.out.println(consolGame);
+		List<ConsolGame> list = repo.selectAll(consolGame);
+		System.out.println(list);
+
+		return list;
+	}
+	
 }

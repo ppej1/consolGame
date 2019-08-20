@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="global.sesoc.ConsolGame.dao.GameListMapper">
+		<resultMap type="LendConsol" id="LendConsol">
+		<result column="lend" property="lend" />
+		<result column="usernum" property="usernum" />
+		<result column="startdate" property="startdate" />
+		<result column="enddate" property="enddate" />
+		<result column="returndate" property="returndate" />
+		<result column="status" property="status" />
+		<result column="gamenum" property="gamenum" />
+		<association property="user" javaType="ConsolUser">
+			<result column="usernum" property="usernum" />
+			<result column="userid" property="userid" />
+			<result column="userpwd" property="userpwd" />
+			<result column="birthdate" property="birthdate" />
+			<result column="username" property="username" />
+			<result column="email" property="email" />
+			<result column="tel1" property="tel1" />
+			<result column="tel2" property="tel2" />
+			<result column="tel3" property="tel3" />
+			<result column="imageurl" property="imageurl" />
+			<result column="point" property="point" />
+			<result column="userlevel" property="userlevel" />
+		</association>
+		<association property="game" javaType="ConsolGame">
+			<result column="gamenum" property="gamenum" />
+			<result column="gametitle" property="gametitle" />
+			<result column="production" property="production" />
+			<result column="content" property="content" />
+			<result column="imageurl" property="imageurl" />
+			<result column="genre" property="genre" />
+			<result column="typename" property="typename" />
+		</association>
+</resultMap>
+
+	<select id="selectAll" parameterType="ConsolGame" resultType="ConsolGame">
+		select
+		gamenum,
+		gametitle,
+		production,
+		content,
+		imageurl,
+		genre,
+		typename
+		from ConsolGame
+	</select>
+
+</mapper>
