@@ -58,7 +58,14 @@ $(function(){
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index" style="text-decoration:none">
+			<div class="sidebar-brand-icon rotate-n-15">
+				<i class="fas fa-chess"></i>
+			</div>
+			<div class="sidebar-brand-text mx-3">
+				<h3>GameBill <sup>2</sup></h3>
+			</div>
+		</a>
                   </div>
                   <div class="loginAounce">
                     	${fail}

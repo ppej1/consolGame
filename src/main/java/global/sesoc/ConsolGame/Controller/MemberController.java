@@ -29,6 +29,7 @@ public class MemberController {
 		if (result != null) {
 			session.setAttribute("loginId", result.getUserid());
 			session.setAttribute("loginName", result.getUsername());
+			session.setAttribute("loginLevel", result.getUserlevel());
 			return "index";
 		}else{
 			model.addAttribute("fail", "아이디 또는 비밀번호가 틀립니다.");
@@ -48,6 +49,10 @@ public class MemberController {
 		}
 		return "login";
 	}	
-	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session){
+		session.invalidate();
+		return "login";
+	}
 	
 }

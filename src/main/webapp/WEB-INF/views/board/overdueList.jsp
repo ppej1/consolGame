@@ -7,7 +7,8 @@
  <head>
 
    <title>GameBill</title>
-      <jsp:include page="model/header.jsp" flush="false" />
+      <jsp:include page="../model/header.jsp" flush="false" />
+
 
  </head>
 
@@ -16,11 +17,8 @@
    <!-- Page Wrapper -->
    <div id="wrapper">
      <!-- Sidebar -->
-     <jsp:include page="model/nav.jsp" flush="false" />
-
-		<!-- Sidebar Toggler (Sidebar) -->
-
-     <!-- End of Sidebar --> 
+     <jsp:include page="../model/nav.jsp" flush="false" />
+     <!-- End of Sidebar -->
 
      <!-- Content Wrapper -->
      <div id="content-wrapper" class="d-flex flex-column">
@@ -28,31 +26,38 @@
        <div id="content">
 
          <!-- Topbar -->
-       <jsp:include page="model/topbar.jsp" flush="false" />
+         <jsp:include page="../model/topbar.jsp" flush="false" />
          <!-- End of Topbar -->
-
          <!-- Begin Page Content -->
-         	<!-------------------------------------------------------------------------------------------------  -->
-         
-         
-         
-         
+	<!--------------------------------------------------------------------------------------------------->
+
+
+
+
+
          <div class="container-fluid">
 
            <!-- Page Heading -->
-           <h1 class="h3 mb-4 text-gray-800">index Page</h1>
+           <h1 class="h3 mb-4 text-gray-800">연채리스트</h1>
 
          </div>
          <!-- /.container-fluid -->
 
        </div>
-       
-       
-       
-       	<!-------------------------------------------------------------------------------------------------  -->
-       
-       <!-- End of Main Content -->
 
+
+
+
+
+
+
+
+
+
+
+	<!--------------------------------------------------------------------------------------------------->
+
+       <!-- End of Main Content -->
        <!-- Footer -->
        <footer class="sticky-footer bg-white">
          <div class="container my-auto">
@@ -73,6 +78,9 @@
    <a class="scroll-to-top rounded" href="#page-top">
      <i class="fas fa-angle-up"></i>
    </a>
+
+
+
 
  </body>
 
