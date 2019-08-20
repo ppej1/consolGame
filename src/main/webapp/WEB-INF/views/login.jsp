@@ -20,6 +20,24 @@
 
   <!-- Custom styles for this template-->
   <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+  <!-- Bootstrap core JavaScript-->
+  <script src="resources/vendor/jquery/jquery.min.js"></script>
+  <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="resources/js/sb-admin-2.min.js"></script>
+  
+<script>
+$(function(){
+	$("#login").on('click',function(){
+		$("#userloginForm").submit();
+	});
+});
+</script>
+
 
 </head>
 
@@ -42,12 +60,12 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form class="user">
+                  <form id="userloginForm" method="POST" action="login">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="text" name="userid" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input type="password"name="userpwd"  class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -55,9 +73,9 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
+                    <button class="btn btn-primary btn-user btn-block" id="login">
                       Login
-                    </a>
+                    </button>
                     <hr>
                     <a href="#" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Login with Google
@@ -71,7 +89,7 @@
                     <a class="small" href="#">Forgot Password?</a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
+                    <a class="small" href="signup">Create an Account!</a>
                   </div>
                 </div>
               </div>
@@ -85,15 +103,6 @@
 
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="resources/vendor/jquery/jquery.min.js"></script>
-  <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="resources/js/sb-admin-2.min.js"></script>
 
 </body>
 

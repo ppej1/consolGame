@@ -21,7 +21,28 @@
 
   <!-- Custom styles for this template-->
   <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
+  <!-- Bootstrap core JavaScript-->
+  <script src="resources/vendor/jquery/jquery.min.js"></script>
+  <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Core plugin JavaScript-->
+  <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="resources/js/sb-admin-2.min.js"></script>
+  
+ <script>
+ $(function(){
+		$("#crateUser").on('click',function(){
+			$("#userCreate").submit();
+		});
+	});
+ 
+ </script> 
+  
+  
+  
+  
 </head>
 
 <body class="bg-gradient-primary">
@@ -38,41 +59,44 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-              <form class="user">
+              <form id="userCreate" action="signup" method="post">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="userid" placeholder="ID">
+                    <input type="text" class="form-control form-control-user" name="userid" id="userid" placeholder="ID">
                   </div>
                   <div class="col-sm-6">
-                    <input type="button" class="btn btn-primary btn-user btn-block" id="exampleLastName" value="ì¤ë³µ ì²´í¬">
+                    <input type="button" class="btn btn-primary btn-user btn-block"  id="confirm" value="중복확인">
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-2 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="exampleInputPassword"
+                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="userpwd"
                       placeholder="Password">
                   </div>
                   <div class="col-sm-6">
                     <input type="password" class="form-control form-control-user" id="exampleRepeatPassword"
                       placeholder="Repeat Password">
                   </div>
-                  <div class="col-sm-4 mb-2 mb-sm-0">
-                    <span>ë¹ë²íì¸</span>
-                  </div>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                  <span>비밀번호 일치 여부 확인  </span>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email"
                     placeholder="Email Address">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                    placeholder="Email Address">
+                  <input type="text" class="form-control form-control-user" id="exampleInputName" name="username"
+                    placeholder="Name">
                 </div>
-
+                <div class="form-group">
+                  <input type="date" class="form-control form-control-user" id="exampleInputBirthDate" name="birthdate"
+                    placeholder="birthdate">
+                </div>
 
                 <div class="form-group row">
                   <div class="col-sm-3 mb-1 mb-sm-0">
-                    <select class="form-control" id="num1">
+                    <select class="form-control" id="tel1" name="tel1">
                       <option value="010">010</option>
                       <option value="010">011</option>
                       <option value="010">017</option>
@@ -81,31 +105,26 @@
                   </div>
                   -
                   <div class="col-sm-4 mb-1 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="userid" placeholder="">
+                    <input type="text" class="form-control form-control-user" id="tel2" name="tel2" placeholder="">
                   </div>
                   -
                   <div class="col-4 mb-1 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="userid" placeholder="">
+                    <input type="text" class="form-control form-control-user" id="tel3" name="tel3" placeholder="">
                   </div>
                 </div>
-
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                    placeholder="Email Address">
-                </div>
-                
+             
                 <div class="form-group">
                     <div class="btn btn-primary btn-user btn-block">
                       <span>Choose file</span>
-                      <input type="file">
+                      <input type="file" accept="image/x-png,image/gif,image/jpeg" name="imageurl">
                     </div>
                   </div>
 
 
 
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                <button class="btn btn-primary btn-user btn-block" id="crateUser">
                   Register Account
-                </a>
+                </button>
                 <hr>
                 <a href="#" class="btn btn-google btn-user btn-block">
                   <i class="fab fa-google fa-fw"></i> Register with Google
@@ -119,7 +138,7 @@
                 <a class="small" href="#">Forgot Password?</a>
               </div>
               <div class="text-center">
-                <a class="small" href="login.html">Already have an account? Login!</a>
+                <a class="small" href="login">Already have an account? Login!</a>
               </div>
             </div>
           </div>
@@ -129,15 +148,7 @@
 
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="resources/vendor/jquery/jquery.min.js"></script>
-  <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="resources/js/sb-admin-2.min.js"></script>
 
 </body>
 
