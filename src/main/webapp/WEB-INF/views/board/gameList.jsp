@@ -7,7 +7,26 @@
  <head>
 
    <title>GameBill</title>
-      <jsp:include page="../model/header.jsp" flush="false" />
+   <jsp:include page="../model/header.jsp" flush="false" />
+   <!-- Custom styles for this page -->
+   <link href="resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+   <!-- Page level plugins -->
+   <script src="resources/vendor/datatables/jquery.dataTables.min.js"></script>
+   <script src="resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+   <!-- Page level custom scripts -->
+   <script src="resources/js/demo/datatables-demo.js"></script>
+<script>
+$(function(){
+	output();
+	
+});
+function(){
+
+	
+}
+</script>
 
  </head>
 
@@ -28,33 +47,68 @@
          <jsp:include page="../model/topbar.jsp" flush="false" />
          <!-- End of Topbar -->
          <!-- Begin Page Content -->
-	<!--------------------------------------------------------------------------------------------------->
+         <!--------------------------------------------------------------------------------------------------->
 
-
-
-
-
+         <!-- Begin Page Content -->
          <div class="container-fluid">
 
            <!-- Page Heading -->
-           <h1 class="h3 mb-4 text-gray-800">GameList</h1>
+           <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+           <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more
+             information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official
+               DataTables documentation</a>.</p>
+
+           <!-- DataTales Example -->
+           <div class="card shadow mb-4">
+             <div class="card-header py-3">
+               <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+             </div>
+             <div class="card-body">
+               <div class="table-responsive">
+                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                   <thead>
+                     <tr>
+                       <th>Image</th>
+                       <th>GameName</th>
+                       <th>production</th>
+                       <th>GameType</th>
+                       <th>Genre</th>
+                       <th>Possible status</th>
+                     </tr>
+                   </thead>
+                   <tfoot>
+                     <tr>
+                       <th>Image</th>
+                       <th>GameName</th>
+                       <th>production</th>
+                       <th>GameType</th>
+                       <th>Genre</th>
+                       <th>Possible status</th>
+                     </tr>
+                   </tfoot>
+                   <tbody>
+                     <tr>
+                       <td>Tiger Nixon</td>
+                       <td>System Architect</td>
+                       <td>Edinburgh</td>
+                       <td>61</td>
+                       <td>2011/04/25</td>
+                       <td>$320,800</td>
+                     </tr>
+                   </tbody>
+                 </table>
+               </div>
+             </div>
+           </div>
 
          </div>
-         <!-- /.container-fluid -->
 
+
+
+         <!-- /.container-fluid -->
        </div>
 
-
-
-
-
-
-
-
-
-
-
-	<!--------------------------------------------------------------------------------------------------->
+       <!--------------------------------------------------------------------------------------------------->
 
        <!-- End of Main Content -->
        <!-- Footer -->

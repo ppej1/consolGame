@@ -8,6 +8,7 @@
   <!-- Custom styles for this template-->
   <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 
+
   <!-- Bootstrap core JavaScript-->
   <script src="resources/vendor/jquery/jquery.min.js"></script>
   <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -18,14 +19,6 @@
   <!-- Custom scripts for all pages-->
   <script src="resources/resources/js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="resources/vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="resources/js/demo/chart-area-demo.js"></script>
-  <script src="resources/js/demo/chart-pie-demo.js"></script>
-  
-  
 <script>
 $(function(){
 	var link = document.URL.substring(document.URL.lastIndexOf("/") + 1, document.URL.length);
