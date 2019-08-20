@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="global.sesoc.ConsolGame.dao.MemberMapper">
+	<insert id="insertMember" parameterType="ConsolUser">
+		insert into consoluser
+		(
+		usernum,
+		userid,
+		userpwd,
+		birthdate,
+		username,
+		email,
+		tel1,
+		tel2,
+		tel3,
+		imageurl
+		)
+		VALUES
+		(
+		rpad(ABS(dbms_random.random),2)||'-'||rpad(ABS(dbms_random.random),3)||'-'||rpad(ABS(dbms_random.random),4),
+		#{userid},
+		#{userpwd},
+		#{birthdate},
+		#{username},
+		#{email},
+		#{tel1},
+		#{tel2},
+		#{tel3},
+		#{imageurl}
+		)
+	</insert>
+	
+	
+	<select id="selectOneUser" parameterType="ConsolUser" resultType="ConsolUser">
+	SELECT
+		usernum,
+		userid,
+		userpwd,
+		birthdate,
+		username,
+		email,
+		tel1,
+		tel2,
+		tel3,
+		imageurl,
+		POINT,
+		USERLEVEL
+	FROM
+		consoluser
+	WHERE
+		userid = #{userid} AND userpwd = #{userpwd}
+	</select>
+	
+	
+	
+</mapper>

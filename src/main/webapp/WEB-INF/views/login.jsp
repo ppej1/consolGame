@@ -60,6 +60,9 @@ $(function(){
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
+                  <div class="loginAounce">
+                    	${fail}
+                  </div>
                   <form id="userloginForm" method="POST" action="login">
                     <div class="form-group">
                       <input type="text" name="userid" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">

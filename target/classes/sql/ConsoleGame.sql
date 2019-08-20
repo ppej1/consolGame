@@ -5,11 +5,11 @@ DROP TABLE CONSOLGAME;
 CREATE TABLE consoluser
 (
     usernum VARCHAR2(100) primary key,
-    userid VARCHAR2(50),
+    userid VARCHAR2(50) not null unique,
     userpwd VARCHAR2(50) not null,
     birthdate date,
     username VARCHAR2(50) not null,
-    email VARCHAR2(200) not null,
+    email VARCHAR2(200) not null unique,
     tel1 VARCHAR2(5) not null,
     tel2 VARCHAR2(5) not null,
     tel3 VARCHAR2(5) not null,
