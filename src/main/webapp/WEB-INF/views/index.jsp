@@ -1,6 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -23,7 +23,10 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-					<jsp:include page="model/nav.jsp" flush="false"/>
+    
+  
+    
+	<jsp:include page="model/nav.jsp" flush="false"/>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -66,7 +69,14 @@
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
-
+            <c:if test="${empty sessionScope.loginId}">
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="login" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">login</span>
+              </a>
+            </li>
+            </c:if>
+	<c:if test="${not empty sessionScope.loginId} }">
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -94,7 +104,7 @@
                 </a>
               </div>
             </li>
-
+		</c:if>
           </ul>
 
         </nav>
