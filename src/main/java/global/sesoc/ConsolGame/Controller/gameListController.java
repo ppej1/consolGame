@@ -1,6 +1,6 @@
 package global.sesoc.ConsolGame.Controller;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,10 +61,10 @@ public class GameListController {
 	
 	//리스트 
 	@RequestMapping(value = "/listOfGame", method = RequestMethod.POST)
-	@ResponseBody 
-	public List<ConsolGame> listOfGame(ConsolGame consolGame){
+	@ResponseBody
+	public ArrayList<ConsolGame> listOfGame(ConsolGame consolGame){
 		System.out.println(consolGame);
-		List<ConsolGame> list = repo.selectAll(consolGame);
+		ArrayList<ConsolGame> list = repo.selectAll(consolGame);
 		System.out.println(list);
 
 		return list;

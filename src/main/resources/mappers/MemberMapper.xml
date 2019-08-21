@@ -40,7 +40,7 @@
 		usernum,
 		userid,
 		userpwd,
-		birthdate,
+		to_char(birthdate, 'YYYY-MM-DD') AS birthdate,
 		username,
 		email,
 		tel1,

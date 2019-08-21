@@ -58,9 +58,9 @@ public class MemberController {
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String modify(HttpSession session, Model model,ConsolUser user){
 		user.setUserid((String)session.getAttribute("loginId"));
-		System.out.println(user);
 		ConsolUser result = repo.selectOneUser(user);
 		System.out.println(result);
+		model.addAttribute("loginUser",result);
 		return "modify";
 	}
 	

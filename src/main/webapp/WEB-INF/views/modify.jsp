@@ -62,7 +62,7 @@
               <form id="userCreate" action="modify" method="post">
                 <div class="form-group row">
                   <div class="col-sm-12 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" name="userid" id="userid" placeholder="ID" readonly="readonly">
+                    <input type="text" class="form-control form-control-user" name="userid" id="userid" value="${loginUser.userid}" placeholder="ID" readonly="readonly">
                   </div>
                 </div>
                 <div class="form-group row">
@@ -79,40 +79,38 @@
                   <span>비밀번호 일치 여부 확인  </span>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email"
+                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email" value="${loginUser.email}"
                     placeholder="Email Address">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="exampleInputName" name="username"
-                    placeholder="Name">
+                  <input type="text" class="form-control form-control-user" id="exampleInputName" name="username"  value="${loginUser.username}" readonly="readonly" placeholder="Name" >
                 </div>
                 <div class="form-group">
-                  <input type="date" class="form-control form-control-user" id="exampleInputBirthDate" name="birthdate"
+                  <input type="date" class="form-control form-control-user" id="exampleInputBirthDate" name="birthdate" value="${loginUser.birthdate}" 
                     placeholder="birthdate">
                 </div>
 
                 <div class="form-group row">
                   <div class="col-sm-3 mb-1 mb-sm-0">
                     <select class="form-control" id="tel1" name="tel1">
-                      <option value="010">010</option>
-                      <option value="010">011</option>
-                      <option value="010">017</option>
-                      <option value="010">018</option>
+                      <option value="010" selected= "${loginUser.tel1 == 010 ? 'selected': ''}">010</option>
+                      <option value="011" selected= "${loginUser.tel1 == 011 ? 'selected': ''}">011</option>
+                      <option value="017" selected= "${loginUser.tel1 == 017 ? 'selected': ''}">017</option>
+                      <option value="018" selected= "${loginUser.tel1 == 018 ? 'selected': ''}">018</option>
                     </select>
                   </div>
                   -
                   <div class="col-sm-4 mb-1 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="tel2" name="tel2" placeholder="">
+                    <input type="text" class="form-control form-control-user" id="tel2" name="tel2" placeholder="" value="${loginUser.tel2}">
                   </div>
                   -
                   <div class="col-4 mb-1 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="tel3" name="tel3" placeholder="">
+                    <input type="text" class="form-control form-control-user" id="tel3" name="tel3" placeholder="" value="${loginUser.tel3}">
                   </div>
                 </div>
              
                 <div class="form-group">
                     <div class="btn btn-primary btn-user btn-block">
-                      <span>Choose file</span>
                       <input type="file" accept="image/x-png,image/gif,image/jpeg" name="imageurl">
                     </div>
                   </div>

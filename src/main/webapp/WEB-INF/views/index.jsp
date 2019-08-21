@@ -9,14 +9,6 @@
    <title>GameBill</title>
       <jsp:include page="model/header.jsp" flush="false" />
 
-  <!-- Page level plugins -->
-  <script src="resources/vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="resources/js/demo/chart-area-demo.js"></script>
-  <script src="resources/js/demo/chart-pie-demo.js"></script>
-  
-  
  </head>
 
  <body id="page-top">
