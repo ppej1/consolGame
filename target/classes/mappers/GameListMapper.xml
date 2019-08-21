@@ -54,4 +54,19 @@
         from consolgame left join lendconsol using (GAMENUM)
 	</select>
 
+
+	<select id="selectOneGame" parameterType="ConsolGame" resultMap="ConsolGame">
+		select
+		gamenum,
+		gametitle,
+		production,
+		content,
+		imageurl,
+		genre,
+		typename,
+        status
+        from consolgame left join lendconsol using (GAMENUM)
+        where 
+        gamenum = #{gamenum}
+	</select>
 </mapper>

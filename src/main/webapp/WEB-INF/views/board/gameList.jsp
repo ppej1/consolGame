@@ -9,7 +9,11 @@
    <title>GameBill</title>
 
    <jsp:include page="../model/header.jsp" flush="false" /> 
-        
+     <style>
+     td{
+     text-align: center;
+     }
+     </style>   
    <script>
 	$(function(){
 			into()
@@ -31,8 +35,8 @@
 			var tag = '';
 			$.each(data,function(index,item){
 				tag += '<tr>';
-				tag += '<td>'+ item.imageurl +'</td>';
-				tag += '<td>'+ item.gametitle +'</td>';
+				tag += '<td style="background-image:url(resources/img/game/'+ item.imageurl +')"><a href ="gamedetail?gamenum='+ item.gamenum +'">/a></td>';
+				tag += '<td><a href ="gamedetail?gamenum='+ item.gamenum +'">'+ item.gametitle +'</a></td>';
 				tag += '<td>'+ item.production +'</td>';
 				tag += '<td>'+ item.typename +'</td>';
 				tag += '<td>'+ item.genre +'</td>';
@@ -85,10 +89,8 @@
          <div class="container-fluid">
 
            <!-- Page Heading -->
-           <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-           <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more
-             information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official
-               DataTables documentation</a>.</p>
+           <h1 class="h3 mb-2 text-gray-800">GameList</h1>
+           <p class="mb-4">대여 가능한 게임들을 모아둔 GamBill 의 게임 리스트 입니다.</p>
 
            <!-- DataTales Example -->
            <div class="card shadow mb-4">

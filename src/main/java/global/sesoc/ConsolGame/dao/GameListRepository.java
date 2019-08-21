@@ -17,6 +17,11 @@ public class GameListRepository {
 		return mapper.selectAll(consolGame);
 	}
 
+	public ConsolGame selectOneGame(ConsolGame consol) {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		return mapper.selectOneGame(consol);
+	}
+
 
 
 }

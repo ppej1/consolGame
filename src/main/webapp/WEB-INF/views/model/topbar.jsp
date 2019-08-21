@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+				유저 번호  : > > >${sessionScope.loginnum}
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
@@ -44,16 +44,18 @@
             </c:if>
 	<c:if test="${not empty sessionScope.loginId}">
             <!-- Nav Item - User Information -->
+             
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.loginName}님</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <img class="img-profile rounded-circle" src="resources/img/user/${sessionScope.loginImage}">
+               
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="modify">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  	회원정보
+                  	회원정보 
                 </a>
           
                 <div class="dropdown-divider"></div>

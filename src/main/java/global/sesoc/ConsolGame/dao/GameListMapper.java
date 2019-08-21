@@ -8,5 +8,7 @@ public interface GameListMapper {
 
 	ArrayList<ConsolGame> selectAll(ConsolGame consolGame);
 
+	ConsolGame selectOneGame(ConsolGame consol);
+
 
 }

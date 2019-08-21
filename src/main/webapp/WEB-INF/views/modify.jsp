@@ -30,7 +30,14 @@
 
   <!-- Custom scripts for all pages-->
   <script src="resources/js/sb-admin-2.min.js"></script>
-  
+ <style>
+ .bg-register-image{
+  background-image: url("resources/img/user/${loginUser.imageurl}");
+ background-size: cover;
+ 
+ }
+ 
+ </style>
  <script>
  $(function(){
 		$("#crateUser").on('click',function(){
@@ -53,7 +60,8 @@
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
-          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-5 d-none d-lg-block bg-register-image">
+          </div>
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">

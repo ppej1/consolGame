@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,15 +59,21 @@ public class GameListController {
 		
 		return "board/userInfo";
 	}
+	@RequestMapping(value = "/gamedetail", method = RequestMethod.GET)
+	public String gamedetail(ConsolGame consol, Model model){
+		ConsolGame result = repo.selectOneGame(consol);
+		model.addAttribute("game",result);
+		System.out.println(result);
+		return "board/gameDetail";
+	}
+	
+	
 	
 	//리스트 
 	@RequestMapping(value = "/listOfGame", method = RequestMethod.POST)
 	@ResponseBody
 	public ArrayList<ConsolGame> listOfGame(ConsolGame consolGame){
-		System.out.println(consolGame);
 		ArrayList<ConsolGame> list = repo.selectAll(consolGame);
-		System.out.println(list);
-
 		return list;
 	}
 	

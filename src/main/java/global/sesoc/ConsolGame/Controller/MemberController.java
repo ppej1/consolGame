@@ -1,8 +1,6 @@
 package global.sesoc.ConsolGame.Controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +20,9 @@ public class MemberController {
 	@Autowired
 	MemberRepository repo;
 
+	final String uploadPath="/workspace/Test_Stpring/consolGame/src/main/webapp/resources/img/user";
+
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(){
 		return "login";
@@ -37,7 +38,7 @@ public class MemberController {
 			session.setAttribute("loginName", result.getUsername());
 			session.setAttribute("loginLevel", result.getUserlevel());
 			session.setAttribute("loginnum", result.getUsernum());
-
+			session.setAttribute("loginImage", result.getImageurl());
 			return "index";
 		}else{
 			model.addAttribute("fail", "아이디 또는 비밀번호가 틀립니다.");
@@ -49,7 +50,6 @@ public class MemberController {
 		return "register";
 	}
 	
-	final String uploadPath="/uploadfile";
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signup(ConsolUser user,MultipartFile upload){
 		String savedfile = FileService.saveFile(upload, uploadPath);
