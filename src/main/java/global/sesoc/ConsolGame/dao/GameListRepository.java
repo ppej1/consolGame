@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import global.sesoc.ConsolGame.dto.ConsolGame;
+import global.sesoc.ConsolGame.dto.LendConsol;
 @Repository
 public class GameListRepository {
 	@Autowired
@@ -20,6 +21,12 @@ public class GameListRepository {
 	public ConsolGame selectOneGame(ConsolGame consol) {
 		GameListMapper mapper = session.getMapper(GameListMapper.class);
 		return mapper.selectOneGame(consol);
+	}
+
+	public int reQuestlendGame(LendConsol lend) {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		lend.setStatus("reserved");
+		return mapper.reQuestlendGame(lend);
 	}
 
 

@@ -39,7 +39,7 @@
 					<h6 class="collapse-header">User Pages:</h6>
 					<a class="collapse-item" href="gameList">게임리스트</a>
 					<c:if test="${not empty sessionScope.loginId}">
-						<a class="collapse-item" href="checkLend">대출 일력 조회</a>
+						<a class="collapse-item" href="checkLend">대여 이력 조회</a>
 					</c:if>
 				</div>
 			</div>
@@ -66,8 +66,8 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="lendRequestList">대출 신청 목록</a> 
-						<a class="collapse-item" href="lendList">대출 목록</a> <a
+						<a class="collapse-item" href="lendRequestList">대여 신청 목록</a> 
+						<a class="collapse-item" href="lendList">대여 목록</a> <a
 							class="collapse-item" href="overdueList">연체 목록</a> 
 							<a class="collapse-item" href="userInfo">유저 정보 조회</a>
 					</div>

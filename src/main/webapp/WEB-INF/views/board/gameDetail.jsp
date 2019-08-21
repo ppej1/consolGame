@@ -56,6 +56,14 @@
      	margin: 0px auto;
      }
    </style>
+   <script>
+   $(function(){
+	 $("#lend").on('click',function(){
+		 $("#lentform").submit();
+	 })  
+   })
+   
+   </script>
  </head>
 
  <body id="page-top">
@@ -127,12 +135,15 @@
                    <td class="d1">
                    
                    <c:if test="${not empty sessionScope.loginId }">
-                     <a href="#" class="btn btn-primary btn-icon-split btn-sm">
+                     <a href="#" id="lend" class="btn btn-primary btn-icon-split btn-sm">
                        <span class="icon text-white-50">
                          <i class="fas fa-flag"></i>
                        </span>
                        <span class="text">대여 하기</span>
                      </a>
+                     	<form id ="lentform" action="reQuestlendGame" method="post">
+                     	<input type="hidden" name="gamenum" value="${game.gamenum}">
+                     	</form>
 						</c:if>
                    </td>
                  </tr>

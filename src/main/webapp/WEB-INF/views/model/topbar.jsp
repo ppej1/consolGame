@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+				<c:if test="${sessionScope.loginLevel == 0}">[ 관리자 모드  ]</c:if>
 				유저 번호  : > > >${sessionScope.loginnum}
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">

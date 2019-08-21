@@ -2,6 +2,8 @@ package global.sesoc.ConsolGame.Controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import global.sesoc.ConsolGame.dao.GameListRepository;
 import global.sesoc.ConsolGame.dto.ConsolGame;
+import global.sesoc.ConsolGame.dto.LendConsol;
 
 @Controller
 public class GameListController {
@@ -69,7 +72,34 @@ public class GameListController {
 	
 	
 	
-	//리스트 
+	
+	@RequestMapping(value = "/reQuestlendGame", method = RequestMethod.POST)
+	public String reQuestlendGame(LendConsol lend, HttpSession session){
+		lend.setUsernum((String) session.getAttribute("loginnum"));
+		System.out.println(lend);
+		int result= repo.reQuestlendGame(lend);
+		if (result ==1 ) {
+			return "redirect:/gameList";
+		}else{
+			return null;
+		}
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//ajax 
 	@RequestMapping(value = "/listOfGame", method = RequestMethod.POST)
 	@ResponseBody
 	public ArrayList<ConsolGame> listOfGame(ConsolGame consolGame){

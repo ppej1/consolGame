@@ -69,4 +69,24 @@
         where 
         gamenum = #{gamenum}
 	</select>
+	
+	
+	<insert id="reQuestlendGame" parameterType="LendConsol">
+	insert into 
+	lendconsol
+	(
+		lend,
+		usernum,
+		status,
+		gamenum
+	)
+	values
+	(
+		lend_seq.nextval,
+		#{usernum},
+		#{status},
+		#{gamenum}
+	)
+	
+	</insert>
 </mapper>
