@@ -57,7 +57,23 @@
 		AND userpwd = #{userpwd}
 		</if>
 	</select>
+	<update id="updateUser" parameterType="ConsolUser">
+	update consoluser
+	set 
+		userpwd = #{userpwd},
+		birthdate =#{birthdate},
+		email = #{email},
+		tel1 = #{tel1},
+		tel2 = #{tel2},
+		tel3 = #{tel3}
+		<if test="imageurl != null">
+			,imageurl = #{imageurl}	
+		</if>
+		
+		WHERE
+		userid = #{userid} 
 	
+	</update>
 	
 	
 </mapper>

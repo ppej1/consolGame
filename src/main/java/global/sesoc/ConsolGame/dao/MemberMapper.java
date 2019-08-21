@@ -8,4 +8,6 @@ public interface MemberMapper {
 
 	ConsolUser selectOneUser(ConsolUser user);
 
+	int updateUser(ConsolUser user);
+
 }

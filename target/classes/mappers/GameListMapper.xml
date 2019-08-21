@@ -5,7 +5,33 @@
 
 
 <mapper namespace="global.sesoc.ConsolGame.dao.GameListMapper">
-		<resultMap type="LendConsol" id="LendConsol">
+<resultMap type="ConsolGame" id="ConsolGame">
+		<result column="gamenum" property="gamenum" />
+		<result column="gametitle" property="gametitle" />
+		<result column="production" property="production" />
+		<result column="content" property="content" />
+		<result column="imageurl" property="imageurl" />
+		<result column="genre" property="genre" />
+		<result column="typename" property="typename" />
+	<collection property="lend" resultMap="LendConsol"/>
+	</resultMap>
+	<resultMap type="ConsolUser" id="ConsolUser">
+		<result column="usernum" property="usernum" />
+		<result column="userid" property="userid" />
+		<result column="userpwd" property="userpwd" />
+		<result column="birthdate" property="birthdate" />
+		<result column="username" property="username" />
+		<result column="email" property="email" />
+		<result column="tel1" property="tel1" />
+		<result column="tel2" property="tel2" />
+		<result column="tel3" property="tel3" />
+		<result column="imageurl" property="imageurl" />
+		<result column="point" property="point" />
+		<result column="userlevel" property="userlevel" />
+	<collection property="lend" resultMap="LendConsol"/>
+		
+	</resultMap>
+	<resultMap type="LendConsol" id="LendConsol">
 		<result column="lend" property="lend" />
 		<result column="usernum" property="usernum" />
 		<result column="startdate" property="startdate" />
@@ -13,32 +39,9 @@
 		<result column="returndate" property="returndate" />
 		<result column="status" property="status" />
 		<result column="gamenum" property="gamenum" />
-		<association property="user" javaType="ConsolUser">
-			<result column="usernum" property="usernum" />
-			<result column="userid" property="userid" />
-			<result column="userpwd" property="userpwd" />
-			<result column="birthdate" property="birthdate" />
-			<result column="username" property="username" />
-			<result column="email" property="email" />
-			<result column="tel1" property="tel1" />
-			<result column="tel2" property="tel2" />
-			<result column="tel3" property="tel3" />
-			<result column="imageurl" property="imageurl" />
-			<result column="point" property="point" />
-			<result column="userlevel" property="userlevel" />
-		</association>
-		<association property="game" javaType="ConsolGame">
-			<result column="gamenum" property="gamenum" />
-			<result column="gametitle" property="gametitle" />
-			<result column="production" property="production" />
-			<result column="content" property="content" />
-			<result column="imageurl" property="imageurl" />
-			<result column="genre" property="genre" />
-			<result column="typename" property="typename" />
-		</association>
 </resultMap>
 
-	<select id="selectAll" parameterType="ConsolGame" resultType="ConsolGame">
+	<select id="selectAll" parameterType="ConsolGame" resultMap="ConsolGame">
 		select
 		gamenum,
 		gametitle,
@@ -46,8 +49,9 @@
 		content,
 		imageurl,
 		genre,
-		typename
-		from ConsolGame
+		typename,
+        status
+        from consolgame left join lendconsol using (GAMENUM)
 	</select>
 
 </mapper>

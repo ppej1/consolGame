@@ -12,6 +12,9 @@
         
    <script>
 	$(function(){
+			into()
+	});
+	function into(){
 		var sendData = {
 				gametitle : "마카롱",
 					production : "안녕",
@@ -21,12 +24,30 @@
 				type:'POST',
 				url : 'listOfGame',
 				data : sendData,
-				success : function(data){
-					alert("ansds");
-					
-					}
+				success : output
 			});
-	});
+	}
+	function output(data){
+			var tag = '';
+			$.each(data,function(index,item){
+				tag += '<tr>';
+				tag += '<td>'+ item.imageurl +'</td>';
+				tag += '<td>'+ item.gametitle +'</td>';
+				tag += '<td>'+ item.production +'</td>';
+				tag += '<td>'+ item.typename +'</td>';
+				tag += '<td>'+ item.genre +'</td>';
+				
+				if (item.lend.status != null || item.lend.status != 'returned' ) {
+					tag += '<td>'+'대여 가능'+'</td>';
+				}else{
+					tag += '<td>'+'대여 불가'+'</td>';
+				} 
+				
+				tag += '</tr>';
+
+			});
+			$("#dataTable tbody").html(tag);
+	}
    </script>
    <!-- Custom styles for this page -->
    <link href="resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">

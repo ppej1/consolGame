@@ -20,4 +20,5 @@ public class ConsolUser {
 	String imageurl;
     int point; 
     int  userlevel;
+    LendConsol lend;
 }

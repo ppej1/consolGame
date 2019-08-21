@@ -15,6 +15,5 @@ public class LendConsol {
 	String returndate;
 	String status;
 	int gamenum;
-	ConsolUser user;
-	ConsolGame game;
+
 }

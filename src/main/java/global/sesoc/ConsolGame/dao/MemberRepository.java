@@ -25,4 +25,13 @@ public class MemberRepository {
 	}
 
 
+	public int updateUser(ConsolUser user) {
+		MemberMapper mapper  = session.getMapper(MemberMapper.class);
+		if (user.getImageurl().equals("")) {
+			user.setImageurl(null);
+		}
+		return mapper.updateUser(user);
+	}
+
+
 }

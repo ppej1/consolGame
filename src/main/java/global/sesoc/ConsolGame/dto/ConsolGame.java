@@ -15,4 +15,5 @@ public class ConsolGame {
 	String imageurl; 
 	String genre;
 	String typename;
+	LendConsol lend;
 }
