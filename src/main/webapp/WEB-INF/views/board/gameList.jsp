@@ -41,10 +41,10 @@
 				tag += '<td>'+ item.typename +'</td>';
 				tag += '<td>'+ item.genre +'</td>';
 				
-				if (item.lend.status != null || item.lend.status != 'returned' ) {
-					tag += '<td>'+'대여 가능'+'</td>';
-				}else{
+				if (item.lend.status == 'delayed' || item.lend.status == 'lent' ) {
 					tag += '<td>'+'대여 불가'+'</td>';
+				}else{
+					tag += '<td>'+'대여 가능'+'</td>';
 				} 
 				
 				tag += '</tr>';
@@ -95,7 +95,7 @@
            <!-- DataTales Example -->
            <div class="card shadow mb-4">
              <div class="card-header py-3">
-               <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+               <h6 class="m-0 font-weight-bold text-primary">GameTable</h6>
              </div>
              <div class="card-body">
                <div class="table-responsive">
