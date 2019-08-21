@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import global.sesoc.ConsolGame.dto.ConsolUser;
+import global.sesoc.ConsolGame.util.FileService;
 
 @Repository
 public class MemberRepository {
@@ -27,9 +28,7 @@ public class MemberRepository {
 
 	public int updateUser(ConsolUser user) {
 		MemberMapper mapper  = session.getMapper(MemberMapper.class);
-		if (user.getImageurl().equals("")) {
-			user.setImageurl(null);
-		}
+
 		return mapper.updateUser(user);
 	}
 
