@@ -8,50 +8,166 @@
 
    <title>GameBill</title>
 
-   <jsp:include page="../model/header.jsp" flush="false" /> 
-     <style>
-     td{
-     text-align: center;
+   <jsp:include page="../model/header.jsp" flush="false" />
+   <style>
+     td {
+       text-align: center;
      }
-     </style>   
-   <script>
-	$(function(){
-			into()
-	});
-	function into(){
-		var sendData = {
-				gametitle : "마카롱",
-					production : "안녕",
-					genre : "액션"
-			}
-			$.ajax({
-				type:'POST',
-				url : 'listOfGame',
-				data : sendData,
-				success : output
-			});
-	}
-	function output(data){
-			var tag = '';
-			$.each(data,function(index,item){
-				tag += '<tr>';
-				tag += '<td style="background-image:url(resources/img/game/'+ item.imageurl +')"><a href ="gamedetail?gamenum='+ item.gamenum +'">/a></td>';
-				tag += '<td><a href ="gamedetail?gamenum='+ item.gamenum +'">'+ item.gametitle +'</a></td>';
-				tag += '<td>'+ item.production +'</td>';
-				tag += '<td>'+ item.typename +'</td>';
-				tag += '<td>'+ item.genre +'</td>';
-				
-				if (item.lend.status == 'delayed' || item.lend.status == 'lent' ) {
-					tag += '<td>'+'대여 불가'+'</td>';
-				}else{
-					tag += '<td>'+'대여 가능'+'</td>';
-				} 
-				
-				tag += '</tr>';
 
-			});
-			$("#dataTable tbody").html(tag);
-	}
+     .container {
+       max-width: 1820px;
+       margin: 5px;
+       width: 100%;
+
+     }
+
+     #searchItem,
+     #searchList {
+       width: 30%;
+       display: inline-block;
+       height: 2em
+     }
+
+     #search,
+     .col {
+
+       margin: 0px;
+       padding: 10px;
+     }
+
+     #search {
+       text-align: right;
+     }
+   </style>
+   <script>
+ $(function () {
+       into();
+       $("#countPerPage").on('change', function () {
+         into();
+       })
+       $("#searchBtn").on('click', function () {
+         into();
+       })
+     });
+
+     function into() {
+    	 var searchItem = $("#searchItem").val();
+    	var searchList = $("#searchList").val();
+       var sendData = {
+    		"searchItem": searchItem,
+    		"searchList": searchList,
+       }
+       $.ajax({
+         type: 'POST',
+         url: 'listOfGame',
+         data: sendData,
+         success: output
+       });
+     }
+
+     function output(data) {
+       var tag = '';
+       var countPerPage = $("#countPerPage").val();
+       var totalRecordCount = data.length;
+       var totalPageCount = totalRecordCount / countPerPage;
+       var nav = '';
+       var currentPage = 1;
+		var startPageGroup = ((currentPage-1)*countPerPage)
+		var endPageGroup = countPerPage*currentPage
+
+       nav += '<li class="page-item">';
+       nav += ' <a class="page-link" href="#" data-value ="before" aria-label="Previous">';
+       nav += '<span aria-hidden="true">&laquo;</span>';
+       nav += '<span class="sr-only">Previous</span>';
+       nav += '</a>';
+       nav += '</li>';
+       for (var int = 1; int < totalPageCount+1; int ++) {
+       	nav += '<li class="page-item"><a class="page-link" href="#'+int+'" data-value ="'+int+'">'+int+'</a></li>';
+   		}
+       
+       nav += '<li class="page-item">';
+       nav += '<a class="page-link" href="#" data-value ="next" aria-label="Next">';
+       nav += '<span aria-hidden="true">&raquo;</span>';
+       nav += '<span class="sr-only">Next</span>';
+       nav += '</a>';
+       nav += '</li>';
+
+    	$(".pagination").html(nav);
+
+  
+    	 $.each(data, function (index, item) {
+     		 
+				if (index>=startPageGroup && index<endPageGroup) {
+		             tag += '<tr>';
+		             tag += '<td style="background-image:url(resources/img/game/' + item.imageurl +
+		               ')"><a href ="gamedetail?gamenum=' + item.gamenum + '">/a></td>';
+		             tag += '<td><a href ="gamedetail?gamenum=' + item.gamenum + '">' + item.gametitle + '</a></td>';
+		             tag += '<td>' + item.production + '</td>';
+		             tag += '<td>' + item.typename + '</td>';
+		             tag += '<td>' + item.genre + '</td>';
+
+		             if (item.lend.status == 'delayed' || item.lend.status == 'lent') {
+		               tag += '<td>' + '대여 불가' + '</td>';
+		             } else {
+		               tag += '<td>' + '대여 가능' + '</td>';
+		             }
+
+		             tag += '</tr>';
+
+				}
+				 
+        });
+   	
+	$("#dataTable tbody").html(tag); 
+    
+       
+	$(".page-link").on('click',function(){
+		
+		tag = '';
+		var currentPage = $(this).attr("data-value");		
+		var startPageGroup = ((currentPage-1)*countPerPage)
+		var endPageGroup = countPerPage*currentPage
+
+	     	 $.each(data, function (index, item) {
+	     		 
+					if (index>=startPageGroup && index<endPageGroup) {
+			             tag += '<tr>';
+			             tag += '<td style="background-image:url(resources/img/game/' + item.imageurl +
+			               ')"><a href ="gamedetail?gamenum=' + item.gamenum + '">/a></td>';
+			             tag += '<td><a href ="gamedetail?gamenum=' + item.gamenum + '">' + item.gametitle + '</a></td>';
+			             tag += '<td>' + item.production + '</td>';
+			             tag += '<td>' + item.typename + '</td>';
+			             tag += '<td>' + item.genre + '</td>';
+
+			             if (item.lend.status == 'delayed' || item.lend.status == 'lent') {
+			               tag += '<td>' + '대여 불가' + '</td>';
+			             } else {
+			               tag += '<td>' + '대여 가능' + '</td>';
+			             }
+
+			             tag += '</tr>';
+
+					}
+					 
+	           });
+		
+		$("#dataTable tbody").html(tag);
+	}) 
+
+
+
+alert(page)
+
+      
+       
+       
+
+
+
+
+       
+     }
+ 
    </script>
    <!-- Custom styles for this page -->
    <link href="resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -91,13 +207,43 @@
              <div class="card-header py-3">
                <h6 class="m-0 font-weight-bold text-primary">GameTable</h6>
              </div>
+
+
+             <div class="container">
+               <div class="row">
+                 <div class="col">
+                   <label class="my-1 mr-2" for="inlineFormCustomSelectPref">page : </label>
+                   <select class="custom-select my-1 mr-sm-2" id="countPerPage">
+                     <option value="10">10</option>
+                     <option value="15">15</option>
+                     <option value="20">20</option>
+                   </select>
+                 </div>
+                 <div class="col">
+                 </div>
+                 <div class="col-6" id="search">
+                   <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Search : </label>
+                   <select class="custom-select my-1 mr-sm-2" id="searchList">
+                     <option value="gametitle">게임명</option>
+                     <option value="production">제작사</option>
+                     <option value="genre">장르</option>
+                     <option value="typename">게임기종</option>
+                   </select>
+                   <input class="form-control" id="searchItem" type="text" >
+                   <button type="button" class="btn btn-primary btn-sm" id="searchBtn">Search</button>
+                 </div>
+               </div>
+             </div>
+
+
+
              <div class="card-body">
                <div class="table-responsive">
                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                    <thead>
                      <tr>
                        <th>Image</th>
-                       <th>GameName</th>
+                       <th>GameTitle</th>
                        <th>production</th>
                        <th>GameType</th>
                        <th>Genre</th>
@@ -107,7 +253,7 @@
                    <tfoot>
                      <tr>
                        <th>Image</th>
-                       <th>GameName</th>
+                       <th>GameTitle</th>
                        <th>production</th>
                        <th>GameType</th>
                        <th>Genre</th>
@@ -115,13 +261,20 @@
                      </tr>
                    </tfoot>
                    <tbody>
-                                
+
                    </tbody>
                  </table>
                </div>
+
+               <nav aria-label="Page navigation example">
+                 <ul class="pagination justify-content-center">
+
+                 </ul>
+               </nav>
+
+
              </div>
            </div>
-
          </div>
 
 

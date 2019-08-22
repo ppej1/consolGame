@@ -102,8 +102,11 @@ public class GameListController {
 	//ajax 
 	@RequestMapping(value = "/listOfGame", method = RequestMethod.POST)
 	@ResponseBody
-	public ArrayList<ConsolGame> listOfGame(ConsolGame consolGame){
-		ArrayList<ConsolGame> list = repo.selectAll(consolGame);
+	public ArrayList<ConsolGame> listOfGame(ConsolGame consolGame, String searchList, String searchItem){
+		System.out.println("리스트 : "+ searchList + " 아이템 : " + searchItem);
+
+		ArrayList<ConsolGame> list = repo.selectAll(consolGame,searchList,searchItem);
+		System.out.println(list);
 		return list;
 	}
 	

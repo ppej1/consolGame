@@ -1,6 +1,8 @@
 package global.sesoc.ConsolGame.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +15,17 @@ public class GameListRepository {
 	@Autowired
 	SqlSession session;
 	
-	public ArrayList<ConsolGame> selectAll(ConsolGame consolGame) {
+	public ArrayList<ConsolGame> selectAll(ConsolGame consolGame, String searchList, String searchItem) {
 		GameListMapper mapper = session.getMapper(GameListMapper.class);
-		return mapper.selectAll(consolGame);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("searchItem", searchItem);
+		map.put("searchList", searchList);
+		map.put("consolGame", consolGame);
+		
+		
+		
+		return mapper.selectAll(map);
 	}
 
 	public ConsolGame selectOneGame(ConsolGame consol) {

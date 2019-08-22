@@ -41,7 +41,7 @@
 		<result column="gamenum" property="gamenum" />
 </resultMap>
 
-	<select id="selectAll" parameterType="ConsolGame" resultMap="ConsolGame">
+	<select id="selectAll" parameterType="map" resultMap="ConsolGame">
 		select
 		gamenum,
 		gametitle,
@@ -52,6 +52,9 @@
 		typename,
         status
         from consolgame left join lendconsol using (GAMENUM)
+        <if test="searchList != null">
+			WHERE ${searchList} LIKE '%'||#{searchItem}||'%'
+		</if>
 	</select>
 
 

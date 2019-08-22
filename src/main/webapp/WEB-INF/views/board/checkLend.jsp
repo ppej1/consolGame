@@ -31,31 +31,59 @@
 	<!--------------------------------------------------------------------------------------------------->
 
 
-
-
-
+       <!-- Begin Page Content -->
          <div class="container-fluid">
 
            <!-- Page Heading -->
-           <h1 class="h3 mb-4 text-gray-800">대출일력 조회</h1>
+           <h1 class="h3 mb-2 text-gray-800">History</h1>
+           <p class="mb-4">자신이 대여한 게임의 대여 내역 입니다..</p>
+
+           <!-- DataTales Example -->
+           <div class="card shadow mb-4">
+             <div class="card-header py-3">
+               <h6 class="m-0 font-weight-bold text-primary">GameTable</h6>
+             </div>
+             <div class="card-body">
+               <div class="table-responsive">
+                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                   <thead>
+                     <tr>
+                       <th>Rent Date</th>
+                       <th>Return Date</th>
+                       <th>Image</th>
+                       <th>GameType</th>
+                       <th>GameTitle</th>
+                       <th>Status</th>
+                     </tr>
+                   </thead>
+                   <tfoot>
+                     <tr>
+                       <th>Rent Date</th>
+                       <th>Return Date</th>
+                       <th>Image</th>
+                       <th>GameType</th>
+                       <th>GameTitle</th>
+                       <th>Status</th>
+                     </tr>
+                   </tfoot>
+                   <tbody>
+                                
+                   </tbody>
+                 </table>
+               </div>
+             </div>
+           </div>
 
          </div>
+
+
+
          <!-- /.container-fluid -->
-
-       </div>
-
-
-
-
-
-
-
-
 
 
 
 	<!--------------------------------------------------------------------------------------------------->
-
+       </div>
        <!-- End of Main Content -->
        <!-- Footer -->
        <footer class="sticky-footer bg-white">
