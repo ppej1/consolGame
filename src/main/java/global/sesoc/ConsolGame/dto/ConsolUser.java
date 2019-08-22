@@ -21,4 +21,5 @@ public class ConsolUser {
     int point; 
     int  userlevel;
     LendConsol lend;
+	ConsolGame game;
 }
