@@ -1,5 +1,7 @@
 package global.sesoc.ConsolGame.dto;
 
+
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,5 +17,6 @@ public class ConsolGame {
 	String imageurl; 
 	String genre;
 	String typename;
-	LendConsol lend;
+	ConsolUser user;
+    LendConsol lend;
 }

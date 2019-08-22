@@ -5,7 +5,10 @@
 
 
 <mapper namespace="global.sesoc.ConsolGame.dao.GameListMapper">
-<resultMap type="ConsolGame" id="ConsolGame">
+
+
+	
+	<resultMap type="ConsolGame" id="ConsolGame">
 		<result column="gamenum" property="gamenum" />
 		<result column="gametitle" property="gametitle" />
 		<result column="production" property="production" />
@@ -13,8 +16,19 @@
 		<result column="imageurl" property="imageurl" />
 		<result column="genre" property="genre" />
 		<result column="typename" property="typename" />
-	<collection property="lend" resultMap="LendConsol"/>
 	</resultMap>
+	
+	<resultMap type="ConsolGame" id="ConsolGamel">
+		<result column="gamenum" property="gamenum" />
+		<result column="gametitle" property="gametitle" />
+		<result column="production" property="production" />
+		<result column="content" property="content" />
+		<result column="imageurl" property="imageurl" />
+		<result column="genre" property="genre" />
+		<result column="typename" property="typename" />
+		<collection property="lend" resultMap="LendConsol" />
+	</resultMap>
+		
 	<resultMap type="ConsolUser" id="ConsolUser">
 		<result column="usernum" property="usernum" />
 		<result column="userid" property="userid" />
@@ -28,9 +42,26 @@
 		<result column="imageurl" property="imageurl" />
 		<result column="point" property="point" />
 		<result column="userlevel" property="userlevel" />
-	<collection property="lend" resultMap="LendConsol"/>
-		
 	</resultMap>
+	
+	<resultMap type="ConsolUser" id="ConsolUserl">
+		<result column="usernum" property="usernum" />
+		<result column="userid" property="userid" />
+		<result column="userpwd" property="userpwd" />
+		<result column="birthdate" property="birthdate" />
+		<result column="username" property="username" />
+		<result column="email" property="email" />
+		<result column="tel1" property="tel1" />
+		<result column="tel2" property="tel2" />
+		<result column="tel3" property="tel3" />
+		<result column="imageurl" property="imageurl" />
+		<result column="point" property="point" />
+		<result column="userlevel" property="userlevel" />
+		<collection property="lend" resultMap="LendConsol" />
+
+	</resultMap>
+	
+	
 	<resultMap type="LendConsol" id="LendConsol">
 		<result column="lend" property="lend" />
 		<result column="usernum" property="usernum" />
@@ -39,9 +70,43 @@
 		<result column="returndate" property="returndate" />
 		<result column="status" property="status" />
 		<result column="gamenum" property="gamenum" />
-</resultMap>
-
-	<select id="selectAll" parameterType="map" resultMap="ConsolGame">
+	</resultMap>
+	
+	<resultMap type="LendConsol" id="LendConsolg">
+		<result column="lend" property="lend" />
+		<result column="usernum" property="usernum" />
+		<result column="startdate" property="startdate" />
+		<result column="enddate" property="enddate" />
+		<result column="returndate" property="returndate" />
+		<result column="status" property="status" />
+		<result column="gamenum" property="gamenum" />
+		<collection property="game" resultMap="ConsolGame" />
+	</resultMap>
+	<resultMap type="LendConsol" id="LendConsolu">
+		<result column="lend" property="lend" />
+		<result column="usernum" property="usernum" />
+		<result column="startdate" property="startdate" />
+		<result column="enddate" property="enddate" />
+		<result column="returndate" property="returndate" />
+		<result column="status" property="status" />
+		<result column="gamenum" property="gamenum" />
+		<collection property="user" resultMap="ConsolUser" />
+	</resultMap>
+	
+	<resultMap type="LendConsol" id="LendConsolug">
+		<result column="lend" property="lend" />
+		<result column="usernum" property="usernum" />
+		<result column="startdate" property="startdate" />
+		<result column="enddate" property="enddate" />
+		<result column="returndate" property="returndate" />
+		<result column="status" property="status" />
+		<result column="gamenum" property="gamenum" />
+		<collection property="user" resultMap="ConsolUser" />
+		<collection property="game" resultMap="ConsolGame" />
+	</resultMap>
+	
+	
+	<select id="selectAll" parameterType="map" resultMap="ConsolGamel">
 		select
 		gamenum,
 		gametitle,
@@ -50,15 +115,15 @@
 		imageurl,
 		genre,
 		typename,
-        status
-        from consolgame left join lendconsol using (GAMENUM)
-        <if test="searchList != null">
+		status
+		from consolgame left join lendconsol using (GAMENUM)
+		<if test="searchList != null">
 			WHERE ${searchList} LIKE '%'||#{searchItem}||'%'
 		</if>
 	</select>
 
 
-	<select id="selectOneGame" parameterType="ConsolGame" resultMap="ConsolGame">
+	<select id="selectOneGame" parameterType="ConsolGame" resultMap="ConsolGamel">
 		select
 		gamenum,
 		gametitle,
@@ -67,29 +132,43 @@
 		imageurl,
 		genre,
 		typename,
-        status
-        from consolgame left join lendconsol using (GAMENUM)
-        where 
-        gamenum = #{gamenum}
+		status
+		from consolgame left join lendconsol using (GAMENUM)
+		where
+		gamenum = #{gamenum}
 	</select>
-	
-	
+
+
 	<insert id="reQuestlendGame" parameterType="LendConsol">
-	insert into 
-	lendconsol
-	(
+		insert into
+		lendconsol
+		(
 		lend,
 		usernum,
 		status,
 		gamenum
-	)
-	values
-	(
+		)
+		values
+		(
 		lend_seq.nextval,
 		#{usernum},
 		#{status},
 		#{gamenum}
-	)
-	
+		)
+
 	</insert>
+
+
+	<select id="RequestList" parameterType="map" resultMap="LendConsolug">
+		select
+		*
+		from consolgame join LendConsol using (GAMENUM)
+            left outer join ConsolUser using(usernum)
+		WHERE
+		status ='reserved'
+
+	</select>
+
+
+
 </mapper>

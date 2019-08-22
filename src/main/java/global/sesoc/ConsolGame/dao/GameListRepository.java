@@ -39,6 +39,16 @@ public class GameListRepository {
 		return mapper.reQuestlendGame(lend);
 	}
 
+	public ArrayList<LendConsol> RequestList(ConsolGame consolGame, String searchList, String searchItem) {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		Map<String, Object> map = new HashMap<>();
+		map.put("searchItem", searchItem);
+		map.put("searchList", searchList);
+		map.put("consolGame", consolGame);
+		
+		return mapper.RequestList(map);
+	}
+
 
 
 }

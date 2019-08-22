@@ -20,15 +20,16 @@
      .card-body {
        margin: 0px auto;
        width: 95%;
-       padding-top : 10px;
+       padding-top: 10px;
      }
 
      tbody {
        text-align: center;
      }
- 
-     #inlineFormCustomSelectPref,
-     #searchItem, #searchList {
+
+     #selectItem,
+     #searchItem,
+     #searchList {
        width: 30%;
        display: inline-block;
        height: 2em
@@ -36,8 +37,7 @@
 
      #search,
      .col {
-	height : 2em
-       margin: 0px;
+       height: 2em margin: 0px;
        padding: 10px;
      }
 
@@ -45,6 +45,54 @@
        text-align: right;
      }
    </style>
+   <script>
+     $(function () {
+       into();
+     })
+
+     function into() {
+       var searchItem = $("#searchItem").val();
+       var searchList = $("#searchList").val();
+       var sendData = {
+         "searchItem": searchItem,
+         "searchList": searchList,
+       }
+       $.ajax({
+         type: 'POST',
+         url: 'requestGame',
+         data: sendData,
+         success: output
+       });
+
+     }
+     function output(data) {
+       var tag = '';
+       
+       $.each(data, function (index, item) {
+        	   tag += '<tr>'
+      	         tag += '<td>'+ item.game.gametitle+'</td>'
+      	         tag += '<td>'+ item.user.username+'</td>'
+      	         tag += '<td>'
+      	         tag += '<div>'
+      	         tag += '<select class="custom-select my-1 mr-sm-2" id="selectItem">'
+      	         tag += '<option value="10">10</option>'
+      	         tag += '<option value="11">11</option>'
+      	         tag += '<option value="12">12</option>'
+      	         tag += '</select>'
+      	         tag += '<button type="button" class="btn btn-primary btn-sm" id="okBtn">승인</button>'
+      	         tag += '<button type="button" class="btn btn-secondary btn-sm" id="noBtn">반려</button>'
+      	         tag += '</div>'
+      	         tag += '</td>'
+      	         tag += '</tr>'
+
+       });
+       $("tbody").html(tag);
+
+     }
+   </script>
+
+
+
  </head>
 
  <body id="page-top">
@@ -98,7 +146,7 @@
                      <option value="username">신청자</option>
                    </select>
                    <input class="form-control" id="searchItem" type="text">
-                   <button type="button" id = "searchBtn" class="btn btn-primary btn-sm">Search</button>
+                   <button type="button" id="searchBtn" class="btn btn-primary btn-sm">Search</button>
                  </div>
                </div>
              </div>
@@ -121,23 +169,7 @@
                      </tr>
                    </tfoot>
                    <tbody>
-                     <tr>
-                       <td>젤다</td>
-                       <td>박태원</td>
-                       <td>
-                         <div>
-                           <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                             <option value="10">10</option>
-                             <option value="11">11</option>
-                             <option value="12">12</option>
-
-                           </select>
-
-                           <button type="button" class="btn btn-primary btn-sm">승인</button>
-                           <button type="button" class="btn btn-secondary btn-sm">반려</button>
-                         </div>
-                       </td>
-                     </tr>
+                    
                    </tbody>
                  </table>
                </div>

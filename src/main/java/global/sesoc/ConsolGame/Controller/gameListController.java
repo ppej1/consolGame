@@ -110,4 +110,15 @@ public class GameListController {
 		return list;
 	}
 	
+	@RequestMapping(value = "/requestGame", method = RequestMethod.POST)
+	@ResponseBody
+	public ArrayList<LendConsol> requestGame(ConsolGame consolGame, String searchList, String searchItem){
+		System.out.println("리스트 : "+ searchList + " 아이템 : " + searchItem);
+
+		ArrayList<LendConsol> list = repo.RequestList(consolGame,searchList,searchItem);
+		System.out.println(list);
+		return list;
+	}
+	
+	
 }
