@@ -22,5 +22,7 @@ public interface GameListMapper {
 
 	int chaingOtherRequest(LendConsol gamenum);
 
+	ArrayList<LendConsol> selectAllLent(Map<String, Object> map);
+
 
 }

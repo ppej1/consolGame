@@ -54,11 +54,12 @@
 	 pageSet()
        into();
        $("#countPerPage").on('change', function () {
+    	 page= 1;
          into();
-       })
+       });
        $("#searchBtn").on('click', function () {
          into();
-       })
+       });
      });
 
      function into() {
@@ -84,7 +85,10 @@
        var nav = '';
        var currentPage = page;
 		var startPageGroup = ((currentPage-1)*countPerPage)
-		var endPageGroup = countPerPage*currentPage
+		var endPageGroup = (startPageGroup + countPerPage) 
+
+		
+		
        nav += '<li class="page-item">';
        nav += ' <a class="page-link" href="#" data-value ="before" aria-label="Previous">';
        nav += '<span aria-hidden="true">&laquo;</span>';
@@ -151,9 +155,8 @@
 			page = currentPage;
 		}
 
-
 		var startPageGroup = ((currentPage-1)*countPerPage)
-		var endPageGroup = countPerPage*currentPage
+		var endPageGroup = (startPageGroup + countPerPage) 
 
 	     	 $.each(data, function (index, item) {
 	     		 

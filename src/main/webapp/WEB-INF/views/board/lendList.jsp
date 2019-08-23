@@ -10,12 +10,22 @@
    <jsp:include page="../model/header.jsp" flush="false" />
 
    <style>
-     #inlineFormCustomSelectPref,
-     #ex1 {
+     #returnBtn {
+       width: 100%
+     }
+
+     td {
+       text-align: center;
+     }
+
+     #countPerPage,
+     #searchItem,
+     #searchList {
        width: 30%;
        display: inline-block;
        height: 2em
      }
+
      #search,
      .col {
 
@@ -27,6 +37,138 @@
        text-align: right;
      }
    </style>
+   <script>
+     var page = '';
+
+     function pageSet() {
+       if (page == '' || page < 0)
+         page = 1;
+
+     }
+     $(function () {
+    	pageSet()
+       into();
+       $("#countPerPage").on('change', function () {
+      	 page= 1;
+           into();
+         });
+         $("#searchBtn").on('click', function () {
+           into();
+         });
+
+     })
+
+     function into() {
+       var searchItem = $("#searchItem").val();
+       var searchList = $("#searchList").val();
+       var sendData = {
+         "searchItem": searchItem,
+         "searchList": searchList,
+       }
+       $.ajax({
+         type: 'POST',
+         url: 'listOfLent',
+         data: sendData,
+         success: output
+       });
+     }
+
+     function output(data) {
+       var tag = '';
+       var countPerPage = $("#countPerPage").val();
+       var totalRecordCount = data.length;
+       var totalPageCount = Math.ceil(totalRecordCount / countPerPage);
+       var nav = '';
+       var currentPage = page;
+		var startPageGroup = ((currentPage-1)*countPerPage)
+		var endPageGroup = (startPageGroup + countPerPage) 
+		
+		
+       
+       nav += '<li class="page-item">';
+       nav += ' <a class="page-link" href="#" data-value ="before" aria-label="Previous">';
+       nav += '<span aria-hidden="true">&laquo;</span>';
+       nav += '<span class="sr-only">Previous</span>';
+       nav += '</a>';
+       nav += '</li>';
+       for (var int = 1; int <= totalPageCount; int++) {
+         nav += '<li class="page-item"><a class="page-link" href="#' + int + '" data-value ="' + int + '">' + int +
+           '</a></li>';
+       }
+
+       nav += '<li class="page-item">';
+       nav += '<a class="page-link" href="#" data-value ="next" aria-label="Next">';
+       nav += '<span aria-hidden="true">&raquo;</span>';
+       nav += '<span class="sr-only">Next</span>';
+       nav += '</a>';
+       nav += '</li>';
+
+       $(".pagination").html(nav);
+		
+       $.each(data, function (index, item) {
+    	   if (index>=startPageGroup && index<endPageGroup) {
+
+           tag += '<tr>'
+           tag += '<td>'+item.game.gametitle+'</td>'
+           tag += ' <td>'+item.user.username+'</td>'
+           tag += '<td>'+item.startdate+'</td>'
+           tag += '<td>'+item.enddate+'</td>'
+           tag += '<td>'
+           tag += '<button type="button" class="btn btn-outline-primary btn-sm" id="returnBtn" data-value ="'+item.lend+'">반납</button>'
+           tag += '</td>'
+           tag += '</tr>'
+    	   }
+
+       });
+       $("#dataTable tbody").html(tag);
+       
+       
+      	$(".page-link").on('click',function(){
+   		
+   		tag = '';
+   		var currentPage = $(this).attr("data-value");
+   		if ($(this).attr("data-value")=="next") {
+   			currentPage = parseInt(page) + 1;
+   			page = currentPage;
+   			if (currentPage>totalPageCount) {
+   				currentPage=totalPageCount;
+   			}
+   		}else if ($(this).attr("data-value")=="before") {
+   			currentPage = parseInt(page) - 1;
+   			page = currentPage;
+   			if(currentPage<1){
+   				currentPage = 1
+   			}
+   		}else{
+   			page = currentPage;
+   		}
+		var startPageGroup = ((currentPage-1)*countPerPage)
+		var endPageGroup = (startPageGroup + countPerPage) 		
+   		
+   	       $.each(data, function (index, item) {
+   	    	   if (index>=startPageGroup && index<endPageGroup) {
+
+   	            tag += '<tr>'
+   	            tag += '<td>'+item.game.gametitle+'</td>'
+   	            tag += ' <td>'+item.user.username+'</td>'
+   	            tag += '<td>'+item.startdate+'</td>'
+   	            tag += '<td>'+item.enddate+'</td>'
+   	            tag += '<td>'
+   	            tag += '<button type="button" class="btn btn-outline-primary btn-sm" id="returnBtn" data-value ="'+item.lend+'">반납</button>'
+   	            tag += '</td>'
+   	            tag += '</tr>'
+   	     	   }
+
+   	       });
+   	       $("#dataTable tbody").html(tag);
+   		
+   	       
+       
+       
+     	});
+
+     }
+   </script>
  </head>
 
  <body id="page-top">
@@ -62,32 +204,31 @@
                <h6 class="m-0 font-weight-bold text-primary">GameTable</h6>
              </div>
 
-           
-           <div class="container">
+
+             <div class="container">
                <div class="row">
                  <div class="col">
                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">page : </label>
-                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                       <option value="10">10</option>
-                       <option value="11">11</option>
-                       <option value="12">12</option>
-                     </select>
+                   <select class="custom-select my-1 mr-sm-2" id="countPerPage">
+                     <option value="10">10</option>
+                     <option value="15">15</option>
+                     <option value="20">20</option>
+                   </select>
                  </div>
                  <div class="col">
                  </div>
-                 <div class="col-6" id="search">     
-                     <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Search : </label>
-                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                       <option value="10">10</option>
-                       <option value="11">11</option>
-                       <option value="12">12</option>
-                     </select>
-                     <input class="form-control" id="ex1" type="text">
-                     <button type="button" class="btn btn-primary btn-sm">Search</button>
+                 <div class="col-6" id="search">
+                   <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Search : </label>
+                   <select class="custom-select my-1 mr-sm-2" id="searchList">
+                     <option value="gametitle">타이틀명</option>
+                     <option value="username">대출자</option>
+                   </select>
+                   <input class="form-control" id="searchItem" type="text">
+                   <button type="button" class="btn btn-primary btn-sm" id="searchBtn">Search</button>
                  </div>
                </div>
              </div>
-     
+
 
 
              <div class="card-body">
@@ -116,6 +257,8 @@
                    </tbody>
                  </table>
                </div>
+               <nav aria-label="Page navigation example">
+                 <ul class="pagination justify-content-center">
              </div>
            </div>
 

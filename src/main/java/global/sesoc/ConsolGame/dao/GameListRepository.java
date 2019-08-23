@@ -75,6 +75,16 @@ public class GameListRepository {
 		return result;
 	}
 
+	public ArrayList<LendConsol> selectAllLent(LendConsol lendConsol, String searchList, String searchItem) {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		Map<String, Object> map = new HashMap<>();
+		map.put("searchItem", searchItem);
+		map.put("searchList", searchList);
+		map.put("lendConsol", lendConsol);
+		
+		return mapper.selectAllLent(map);
+	}
+
 
 
 }

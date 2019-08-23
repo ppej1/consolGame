@@ -100,6 +100,7 @@ public class GameListController {
 	
 	
 	//ajax 
+	//게임 릿트 
 	@RequestMapping(value = "/listOfGame", method = RequestMethod.POST)
 	@ResponseBody
 	public ArrayList<ConsolGame> listOfGame(ConsolGame consolGame, String searchList, String searchItem){
@@ -107,7 +108,7 @@ public class GameListController {
 		ArrayList<ConsolGame> list = repo.selectAll(consolGame,searchList,searchItem);
 		return list;
 	}
-	
+	//대여 신청 목록
 	@RequestMapping(value = "/requestGame", method = RequestMethod.POST)
 	@ResponseBody
 	public ArrayList<LendConsol> requestGame(ConsolGame consolGame, String searchList, String searchItem){
@@ -123,6 +124,16 @@ public class GameListController {
 		
 		
 		return "success";
-	}	
+	}
+	
+	// 대여 목록
+	@RequestMapping(value = "/listOfLent", method = RequestMethod.POST)
+	@ResponseBody
+	public ArrayList<LendConsol> listOfLent(LendConsol lendConsol, String searchList, String searchItem){
+		System.out.println("abc : " + lendConsol);
+		ArrayList<LendConsol> list = repo.selectAllLent(lendConsol,searchList,searchItem);
+		System.out.println(list);
+		return list;
+	}
 	
 }
