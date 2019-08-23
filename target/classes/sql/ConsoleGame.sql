@@ -32,12 +32,12 @@ typename varchar2(50)
 CREATE TABLE lendConsol
 (
 lend NUMBER primary key,
-usernum VARCHAR2(100) references consoluser,
-startdate date default sysdate,
+usernum VARCHAR2(100) references consoluser on delete cascade,
+startdate date,
 enddate date,
 returndate date,
 status VARCHAR2(100)  default 'returned',
-gamenum NUMBER references CONSOLGAME
+gamenum NUMBER references CONSOLGAME on delete cascade
 );
 
 

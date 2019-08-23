@@ -121,4 +121,14 @@ public class GameListController {
 	}
 	
 	
+	@RequestMapping(value = "/confirmRequest", method = RequestMethod.POST)
+	@ResponseBody
+	public String confirmRequest(LendConsol lendConsol, String selectYN){
+		System.out.println("리스트 : "+ lendConsol + " 아이템 : " + selectYN);
+		int result = repo.confirmRequest(lendConsol,selectYN);
+		
+		
+		return "success";
+	}	
+	
 }

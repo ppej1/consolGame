@@ -27,9 +27,10 @@
        text-align: center;
      }
 
-     #selectItem,
+     #selectDate,
      #searchItem,
-     #searchList {
+     #searchList,
+     #countPerPage{
        width: 30%;
        display: inline-block;
        height: 2em
@@ -48,6 +49,13 @@
    <script>
      $(function () {
        into();
+       $("#searchBtn").on('click',function(){
+    	   into();
+       })
+       
+       $("#countPerPage").on('change', function () {
+         into();
+       })
      })
 
      function into() {
@@ -67,27 +75,90 @@
      }
      function output(data) {
        var tag = '';
+       var countPerPage = $("#countPerPage").val();
+       var totalRecordCount = data.length;
+       var totalPageCount = totalRecordCount / countPerPage;
+       var nav = '';
+       var currentPage = 1;
+		var startPageGroup = ((currentPage-1)*countPerPage)
+		var endPageGroup = countPerPage*currentPage
+		
+		
+		
+	       nav += '<li class="page-item">';
+	       nav += ' <a class="page-link" href="#" data-value ="before" aria-label="Previous">';
+	       nav += '<span aria-hidden="true">&laquo;</span>';
+	       nav += '<span class="sr-only">Previous</span>';
+	       nav += '</a>';
+	       nav += '</li>';
+	       for (var int = 1; int < totalPageCount+1; int ++) {
+	       	nav += '<li class="page-item"><a class="page-link" href="#'+int+'" data-value ="'+int+'">'+int+'</a></li>';
+	   		}
+	       
+	       nav += '<li class="page-item">';
+	       nav += '<a class="page-link" href="#" data-value ="next" aria-label="Next">';
+	       nav += '<span aria-hidden="true">&raquo;</span>';
+	       nav += '<span class="sr-only">Next</span>';
+	       nav += '</a>';
+	       nav += '</li>';
+
+	    	$(".pagination").html(nav);
        
        $.each(data, function (index, item) {
+    	   
+    	   if (index>=startPageGroup && index<endPageGroup) {
         	   tag += '<tr>'
       	         tag += '<td>'+ item.game.gametitle+'</td>'
       	         tag += '<td>'+ item.user.username+'</td>'
       	         tag += '<td>'
       	         tag += '<div>'
-      	         tag += '<select class="custom-select my-1 mr-sm-2" id="selectItem">'
+      	         tag += '<select class="custom-select my-1 mr-sm-2" id="selectDate">'
+      	         tag += '<option value="5">5</option>'
       	         tag += '<option value="10">10</option>'
-      	         tag += '<option value="11">11</option>'
-      	         tag += '<option value="12">12</option>'
+      	         tag += '<option value="15">15</option>'
       	         tag += '</select>'
-      	         tag += '<button type="button" class="btn btn-primary btn-sm" id="okBtn">승인</button>'
-      	         tag += '<button type="button" class="btn btn-secondary btn-sm" id="noBtn">반려</button>'
+      	        	tag += ' 일간  '
+      	         tag += '<button type="button" class="btn btn-primary btn-sm okBtn" id="okBtn" data-value ="'+ item.lend  +'">승인</button>'
+      	         tag += '<button type="button" class="btn btn-secondary btn-sm noBtn" id="noBtn" data-value ="'+ item.lend  +'"">반려</button>'
       	         tag += '</div>'
       	         tag += '</td>'
       	         tag += '</tr>'
+    	   }
 
        });
        $("tbody").html(tag);
 
+       
+       
+       
+       
+       
+       
+       
+       
+       $(".btn").on('click',function(){
+    	   var currentItem = $(this).attr("data-value");	
+    	   var selectYN = $(this).attr("id");
+    	   var selectDate = $("#selectDate").val();
+    	   alert(currentPage +"," +  selectDate+","+ selectYN)
+           var sendData = {
+       		"lend": currentItem,
+       		"selectYN" :selectYN
+          }
+          $.ajax({
+            type: 'POST',
+            url: 'confirmRequest',
+            data: sendData,
+            success: output
+          });
+       });
+       
+       
+       
+       
+       
+       
+       
      }
    </script>
 
@@ -131,7 +202,7 @@
                <div class="row">
                  <div class="col">
                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">page : </label>
-                   <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                   <select class="custom-select my-1 mr-sm-2" id="countPerPage">
                      <option value="5">5</option>
                      <option value="10">10</option>
                      <option value="15">15</option>
@@ -173,6 +244,11 @@
                    </tbody>
                  </table>
                </div>
+                <nav aria-label="Page navigation example">
+                 <ul class="pagination justify-content-center">
+
+                 </ul>
+               </nav>
              </div>
            </div>
 
