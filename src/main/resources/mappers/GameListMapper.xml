@@ -204,7 +204,8 @@
 	
 	<select id="selectAllLent" parameterType="map" resultMap="LendConsolug">
 		select
-		GAMENUM
+		lend
+		,GAMENUM
 		,usernum
 		,gametitle
 		,username

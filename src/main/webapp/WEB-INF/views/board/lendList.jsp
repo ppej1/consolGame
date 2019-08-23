@@ -114,13 +114,20 @@
            tag += '<td>'+item.startdate+'</td>'
            tag += '<td>'+item.enddate+'</td>'
            tag += '<td>'
-           tag += '<button type="button" class="btn btn-outline-primary btn-sm" id="returnBtn" data-value ="'+item.lend+'">반납</button>'
+           tag += '<button type="button" class="btn returnBtn btn-outline-primary btn-sm" id="returnBtn" data-value ="'+item.lend+'">반납</button>'
            tag += '</td>'
            tag += '</tr>'
     	   }
 
        });
        $("#dataTable tbody").html(tag);
+       
+       
+       $(".returnBtn").on('click',function(){
+    	   alert($(this).attr("data-value"))
+    	   
+       })
+       
        
        
       	$(".page-link").on('click',function(){
