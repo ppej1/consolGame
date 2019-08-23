@@ -47,15 +47,27 @@
      }
    </style>
    <script>
+   var page = '';
+   function pageSet(){
+	   if(page == '' || page < 0)
+ 			page = 1;
+	   
+   }
+   
      $(function () {
+    	 pageSet()
        into();
-       $("#searchBtn").on('click',function(){
-    	   into();
-       })
+    	 
+
        
        $("#countPerPage").on('change', function () {
          into();
-       })
+       });
+       $("#searchBtn").on('click',function(){
+    	   into();
+       });     
+       
+       
      })
 
      function into() {
@@ -77,21 +89,19 @@
        var tag = '';
        var countPerPage = $("#countPerPage").val();
        var totalRecordCount = data.length;
-       var totalPageCount = totalRecordCount / countPerPage;
+       var totalPageCount = Math.ceil(totalRecordCount / countPerPage);
        var nav = '';
-       var currentPage = 1;
+       var currentPage = page;
 		var startPageGroup = ((currentPage-1)*countPerPage)
 		var endPageGroup = countPerPage*currentPage
 		
-		
-		
-	       nav += '<li class="page-item">';
+		nav += '<li class="page-item">';
 	       nav += ' <a class="page-link" href="#" data-value ="before" aria-label="Previous">';
 	       nav += '<span aria-hidden="true">&laquo;</span>';
 	       nav += '<span class="sr-only">Previous</span>';
 	       nav += '</a>';
 	       nav += '</li>';
-	       for (var int = 1; int < totalPageCount+1; int ++) {
+	       for (var int = 1; int <= totalPageCount; int ++) {
 	       	nav += '<li class="page-item"><a class="page-link" href="#'+int+'" data-value ="'+int+'">'+int+'</a></li>';
 	   		}
 	       
@@ -126,21 +136,14 @@
     	   }
 
        });
-       $("tbody").html(tag);
+       $("#dataTable tbody").html(tag);
 
-       
-       
-       
-       
-       
-       
-       
+
        
        $(".btn").on('click',function(){
     	   var currentItem = $(this).attr("data-value");	
     	   var selectYN = $(this).attr("id");
     	   var selectDate = $("#selectDate").val();
-    	   alert(currentPage +"," +  selectDate+","+ selectYN)
            var sendData = {
        		"lend": currentItem,
        		"selectDate" :selectDate,
@@ -156,7 +159,60 @@
           });
        });
        
-       
+  
+   	$(".page-link").on('click',function(){
+		
+		tag = '';
+		var currentPage = $(this).attr("data-value");
+		if ($(this).attr("data-value")=="next") {
+			currentPage = parseInt(page) + 1;
+			page = currentPage;
+			if (currentPage>totalPageCount) {
+				currentPage=totalPageCount;
+			}
+		}else if ($(this).attr("data-value")=="before") {
+			currentPage = parseInt(page) - 1;
+			page = currentPage;
+			if(currentPage<1){
+				currentPage = 1
+			}
+		}else{
+			page = currentPage;
+		}
+
+		var startPageGroup = ((currentPage-1)*countPerPage)
+		var endPageGroup = countPerPage*currentPage
+		
+		alert(currentPage+","+ totalRecordCount+","+ totalPageCount)
+		
+	       $.each(data, function (index, item) {
+	    	   
+	    	   if (index>=startPageGroup && index<endPageGroup) {
+	        	   tag += '<tr>'
+	      	         tag += '<td>'+ item.game.gametitle+'</td>'
+	      	         tag += '<td>'+ item.user.username+'</td>'
+	      	         tag += '<td>'
+	      	         tag += '<div>'
+	      	         tag += '<select class="custom-select my-1 mr-sm-2" id="selectDate">'
+	      	         tag += '<option value="5">5</option>'
+	      	         tag += '<option value="10">10</option>'
+	      	         tag += '<option value="15">15</option>'
+	      	         tag += '</select>'
+	      	        	tag += ' 일간  '
+	      	         tag += '<button type="button" class="btn btn-primary btn-sm okBtn" id="okBtn" data-value ="'+ item.lend  +'">승인</button>'
+	      	         tag += '<button type="button" class="btn btn-secondary btn-sm noBtn" id="noBtn" data-value ="'+ item.lend  +'"">반려</button>'
+	      	         tag += '</div>'
+	      	         tag += '</td>'
+	      	         tag += '</tr>'
+	    	   }
+
+	       });
+	       $("#dataTable tbody").html(tag);
+		
+		
+		
+   		
+   	});
        
        
        

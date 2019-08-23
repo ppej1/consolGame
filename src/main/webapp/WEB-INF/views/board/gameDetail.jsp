@@ -135,6 +135,9 @@
                    <td class="d1">
                    
                    <c:if test="${not empty sessionScope.loginId }">
+                <c:choose>
+				<c:when test="${game.lend.status == 'delayed' || game.lend.status == 'lent'}"></c:when>
+				<c:otherwise>
                      <a href="#" id="lend" class="btn btn-primary btn-icon-split btn-sm">
                        <span class="icon text-white-50">
                          <i class="fas fa-flag"></i>
@@ -144,6 +147,8 @@
                      	<form id ="lentform" action="reQuestlendGame" method="post">
                      	<input type="hidden" name="gamenum" value="${game.gamenum}">
                      	</form>
+				</c:otherwise>
+				</c:choose>	
 						</c:if>
                    </td>
                  </tr>

@@ -80,7 +80,7 @@
        var tag = '';
        var countPerPage = $("#countPerPage").val();
        var totalRecordCount = data.length;
-       var totalPageCount = totalRecordCount / countPerPage;
+       var totalPageCount = Math.ceil(totalRecordCount / countPerPage);
        var nav = '';
        var currentPage = page;
 		var startPageGroup = ((currentPage-1)*countPerPage)
@@ -91,7 +91,7 @@
        nav += '<span class="sr-only">Previous</span>';
        nav += '</a>';
        nav += '</li>';
-       for (var int = 1; int < totalPageCount+1; int ++) {
+       for (var int = 1; int <= totalPageCount; int ++) {
        	nav += '<li class="page-item"><a class="page-link" href="#'+int+'" data-value ="'+int+'">'+int+'</a></li>';
    		}
        
@@ -137,12 +137,13 @@
 		var currentPage = $(this).attr("data-value");
 		if ($(this).attr("data-value")=="next") {
 			currentPage = parseInt(page) +1;
+			page = currentPage;
 			if (currentPage>totalPageCount) {
 				currentPage=totalPageCount;
 			}
 		}else if ($(this).attr("data-value")=="before") {
 			currentPage = parseInt(page) - 1;
-
+			page = currentPage;
 			if(currentPage<1){
 				currentPage = 1
 			}
