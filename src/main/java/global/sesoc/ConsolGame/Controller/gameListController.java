@@ -103,29 +103,23 @@ public class GameListController {
 	@RequestMapping(value = "/listOfGame", method = RequestMethod.POST)
 	@ResponseBody
 	public ArrayList<ConsolGame> listOfGame(ConsolGame consolGame, String searchList, String searchItem){
-		System.out.println("리스트 : "+ searchList + " 아이템 : " + searchItem);
 
 		ArrayList<ConsolGame> list = repo.selectAll(consolGame,searchList,searchItem);
-		System.out.println(list);
 		return list;
 	}
 	
 	@RequestMapping(value = "/requestGame", method = RequestMethod.POST)
 	@ResponseBody
 	public ArrayList<LendConsol> requestGame(ConsolGame consolGame, String searchList, String searchItem){
-		System.out.println("리스트 : "+ searchList + " 아이템 : " + searchItem);
-
 		ArrayList<LendConsol> list = repo.RequestList(consolGame,searchList,searchItem);
-		System.out.println(list);
 		return list;
 	}
 	
 	
 	@RequestMapping(value = "/confirmRequest", method = RequestMethod.POST)
 	@ResponseBody
-	public String confirmRequest(LendConsol lendConsol, String selectYN){
-		System.out.println("리스트 : "+ lendConsol + " 아이템 : " + selectYN);
-		int result = repo.confirmRequest(lendConsol,selectYN);
+	public String confirmRequest(LendConsol lendConsol, String selectYN, String selectDate){
+		int result = repo.confirmRequest(lendConsol,selectYN,selectDate);
 		
 		
 		return "success";

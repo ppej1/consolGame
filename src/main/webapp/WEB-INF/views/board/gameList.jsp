@@ -9,6 +9,7 @@
    <title>GameBill</title>
 
    <jsp:include page="../model/header.jsp" flush="false" />
+   
    <style>
      td {
        text-align: center;
@@ -39,8 +40,18 @@
        text-align: right;
      }
    </style>
+   
    <script>
+   var page = '';
+   function pageSet(){
+	   if(page == '' || page < 0)
+ 			page = 1;
+	   
+   }
+   
  $(function () {
+	 
+	 pageSet()
        into();
        $("#countPerPage").on('change', function () {
          into();
@@ -71,10 +82,9 @@
        var totalRecordCount = data.length;
        var totalPageCount = totalRecordCount / countPerPage;
        var nav = '';
-       var currentPage = 1;
+       var currentPage = page;
 		var startPageGroup = ((currentPage-1)*countPerPage)
 		var endPageGroup = countPerPage*currentPage
-
        nav += '<li class="page-item">';
        nav += ' <a class="page-link" href="#" data-value ="before" aria-label="Previous">';
        nav += '<span aria-hidden="true">&laquo;</span>';
@@ -100,14 +110,14 @@
 				if (index>=startPageGroup && index<endPageGroup) {
 		             tag += '<tr>';
 		             tag += '<td style="background-image:url(resources/img/game/' + item.imageurl +
-		               ')"><a href ="gamedetail?gamenum=' + item.gamenum + '">/a></td>';
+		               ')"><a href ="gamedetail?gamenum=' + item.gamenum + '"></a></td>';
 		             tag += '<td><a href ="gamedetail?gamenum=' + item.gamenum + '">' + item.gametitle + '</a></td>';
 		             tag += '<td>' + item.production + '</td>';
 		             tag += '<td>' + item.typename + '</td>';
 		             tag += '<td>' + item.genre + '</td>';
 
 		             if (item.lend.status == 'delayed' || item.lend.status == 'lent') {
-		               tag += '<td>' + '대여 불가' + '</td>';
+		               tag += '<td  style="color:red">' + '대여 불가' + '</td>';
 		             } else {
 		               tag += '<td>' + '대여 가능' + '</td>';
 		             }
@@ -124,7 +134,23 @@
 	$(".page-link").on('click',function(){
 		
 		tag = '';
-		var currentPage = $(this).attr("data-value");		
+		var currentPage = $(this).attr("data-value");
+		if ($(this).attr("data-value")=="next") {
+			currentPage = parseInt(page) +1;
+			if (currentPage>totalPageCount) {
+				currentPage=totalPageCount;
+			}
+		}else if ($(this).attr("data-value")=="before") {
+			currentPage = parseInt(page) - 1;
+
+			if(currentPage<1){
+				currentPage = 1
+			}
+		}else{
+			page = currentPage;
+		}
+
+
 		var startPageGroup = ((currentPage-1)*countPerPage)
 		var endPageGroup = countPerPage*currentPage
 
@@ -133,7 +159,7 @@
 					if (index>=startPageGroup && index<endPageGroup) {
 			             tag += '<tr>';
 			             tag += '<td style="background-image:url(resources/img/game/' + item.imageurl +
-			               ')"><a href ="gamedetail?gamenum=' + item.gamenum + '">/a></td>';
+			               ')"><a href ="gamedetail?gamenum=' + item.gamenum + '"></a></td>';
 			             tag += '<td><a href ="gamedetail?gamenum=' + item.gamenum + '">' + item.gametitle + '</a></td>';
 			             tag += '<td>' + item.production + '</td>';
 			             tag += '<td>' + item.typename + '</td>';
@@ -153,10 +179,6 @@
 		
 		$("#dataTable tbody").html(tag);
 	}) 
-
-
-
-alert(page)
 
       
        

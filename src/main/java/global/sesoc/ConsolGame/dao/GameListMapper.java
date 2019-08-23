@@ -16,7 +16,11 @@ public interface GameListMapper {
 
 	ArrayList<LendConsol> RequestList(Map<String, Object> map);
 
-	int confirmRequest(LendConsol lendConsol);
+	int confirmRequest(Map<String, Object> map);
+
+	LendConsol selectlentGame(LendConsol lendConsol);
+
+	int chaingOtherRequest(LendConsol gamenum);
 
 
 }

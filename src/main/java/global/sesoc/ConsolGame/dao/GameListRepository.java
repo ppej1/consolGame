@@ -49,7 +49,7 @@ public class GameListRepository {
 		return mapper.RequestList(map);
 	}
 
-	public int confirmRequest(LendConsol lendConsol, String selectYN) {
+	public int confirmRequest(LendConsol lendConsol, String selectYN,  String selectDate) {
 		GameListMapper mapper = session.getMapper(GameListMapper.class);
 		
 		if(selectYN.equals("okBtn")){
@@ -58,7 +58,21 @@ public class GameListRepository {
 			lendConsol.setStatus("rejected");
 		}
 		
-		return mapper.confirmRequest(lendConsol);
+		Map<String, Object> map = new HashMap<>();
+		map.put("lendConsol", lendConsol);
+		map.put("selectDate", selectDate);
+		
+		int result = mapper.confirmRequest(map);
+		System.out.println(result);
+		if (result == 1) {
+			if (lendConsol.getStatus() =="lent") {
+				LendConsol gamenum = mapper.selectlentGame(lendConsol);
+				gamenum.setLend(lendConsol.getLend());
+				int ok = mapper.chaingOtherRequest(gamenum); 
+				return ok;
+			}
+		}
+		return result;
 	}
 
 

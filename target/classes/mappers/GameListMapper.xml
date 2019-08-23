@@ -172,14 +172,33 @@
 		order by lend asc
 	</select>
 
-	<update id="confirmRequest" parameterType="LendConsol">
+	<update id="confirmRequest" parameterType="map">
 	update LendConsol
 	set
-	status =#{status}
+	STATUS = #{lendConsol.status}
+	<if test="lendConsol.status == 'lent'">
+	,STARTDATE = sysdate
+	,ENDDATE = sysdate + #{selectDate}
+	</if>
+	WHERE
+	lend =#{lendConsol.lend}
+	</update>
 	
+	
+	<select id="selectlentGame" parameterType="LendConsol" resultType="LendConsol">
+	SELECT
+	GAMENUM
+	FROM
+	LendConsol
 	WHERE
 	lend =#{lend}
+	</select>
+	
+	<update id="chaingOtherRequest" parameterType="LendConsol">
+	update LendConsol
+	set
+	STATUS = 'rejected'
+	WHERE
+	gamenum = #{gamenum} and STATUS = 'reserved'
 	</update>
-
-
 </mapper>

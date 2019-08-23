@@ -143,13 +143,16 @@
     	   alert(currentPage +"," +  selectDate+","+ selectYN)
            var sendData = {
        		"lend": currentItem,
+       		"selectDate" :selectDate,
        		"selectYN" :selectYN
           }
           $.ajax({
             type: 'POST',
             url: 'confirmRequest',
             data: sendData,
-            success: output
+            success: function(){
+            	into();
+            }
           });
        });
        
