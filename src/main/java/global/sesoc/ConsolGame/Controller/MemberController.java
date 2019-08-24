@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import global.sesoc.ConsolGame.dao.MemberRepository;
 import global.sesoc.ConsolGame.dto.ConsolUser;
-import global.sesoc.ConsolGame.dto.LendConsol;
 import global.sesoc.ConsolGame.util.FileService;
 
 @Controller

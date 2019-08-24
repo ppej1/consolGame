@@ -128,7 +128,10 @@ public class GameListController {
 	public String confirmRequest(LendConsol lendConsol, String selectYN, String selectDate){
 		repo.checkDelayLendForAllLentBook();
 		int result = repo.confirmRequest(lendConsol,selectYN,selectDate);
-		return "success";
+		if (result == 1) {
+			return "success";
+		}
+		return "fail";
 	}
 	
 	// 대여 목록
@@ -144,7 +147,10 @@ public class GameListController {
 	@ResponseBody
 	public String returnGame(LendConsol lendConsol){
 		int result = repo.returnGame(lendConsol);
-		return "sucess";
+		if (result == 1) {
+			return "success";
+		}
+		return "fail";
 	}	
 	
 	//대여 이력 조회
@@ -171,6 +177,9 @@ public class GameListController {
 	public String returnDelayGame(LendConsol lendConsol){
 		System.out.println(lendConsol);
 		int result = repo.returnDelayGame(lendConsol);
-		return "sucess";
+		if (result == 1) {
+			return "success";
+		}
+		return "fail";
 	}	
 }

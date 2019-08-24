@@ -3,9 +3,6 @@
 
 <!DOCTYPE html>
 <html>
-<script>
-
-</script>
 <head>
 
   <meta charset="utf-8">
@@ -32,10 +29,35 @@
   <!-- Custom scripts for all pages-->
   <script src="resources/js/sb-admin-2.min.js"></script>
   
+   <!-- google Login-->
+
 <script>
 $(function(){
 	$("#login").on('click',function(){
-		$("#userloginForm").submit();
+
+		var flag = false;
+		if ($("#userid").val().length== 0) {
+			$(".loginAnounce").html("ID를 입력해 주세요 ");
+		}else if($("#userid").val().length<2 || $("#userid").val().length>11 ){
+			$(".loginAnounce").html("ID는 3~10 글자 입니다. ");
+
+			$("#userid").val("");
+		}else if($("#userpwd").val().length== 0){
+			$(".loginAnounce").html("PASSWORD를 입력해 주세요 ");
+
+		}else if($("#userpwd").val().length<2 || $("#userpwd").val().length>11 ){
+			$(".loginAnounce").html("PASSWORD는 3~10 글자 입니다.");
+
+			$("#userpwd").val("");
+		}else{
+			flag = true;
+			
+		}
+		
+		if(flag== true){
+			$("#userloginForm").submit();
+		}
+		
 	});
 });
 </script>
@@ -69,15 +91,15 @@ $(function(){
 			</div>
 		</a>
                   </div>
-                  <div class="loginAounce">
+                  <div class="loginAnounce">
                     	${fail}
                   </div>
                   <form id="userloginForm" method="POST" action="login">
                     <div class="form-group">
-                      <input type="text" name="userid" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="text" name="userid" class="form-control form-control-user" id="userid" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     </div>
                     <div class="form-group">
-                      <input type="password"name="userpwd"  class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input type="password" name="userpwd"  class="form-control form-control-user" id="userpwd"   placeholder="Password">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -85,17 +107,19 @@ $(function(){
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
+                    </form>
                     <button class="btn btn-primary btn-user btn-block" id="login">
                       Login
                     </button>
+                    
                     <hr>
-                    <a href="#" class="btn btn-google btn-user btn-block">
+                    <button id="GoogleLoginBtn" class="btn btn-google btn-user btn-block" data-value="cheking">
                       <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
+                    </button>
                     <a href="#" class="btn btn-facebook btn-user btn-block">
                       <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                     </a>
-                  </form>
+                  
                   <hr>
                   <div class="text-center">
                     <a class="small" href="#">Forgot Password?</a>
@@ -115,6 +139,7 @@ $(function(){
 
   </div>
 
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
 </body>
 
