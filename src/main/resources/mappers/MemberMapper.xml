@@ -82,4 +82,23 @@
 	userid = #{userid}
 	</select>
 	
+		<select id="selectAllUser" parameterType="map" resultType="ConsolUser">
+	SELECT
+		usernum,
+		userid,
+		to_char(birthdate, 'YYYY-MM-DD') AS birthdate,
+		username,
+		email,
+		tel1,
+		tel2,
+		tel3,
+		imageurl,
+		POINT,
+		USERLEVEL
+	FROM
+		consoluser
+		<if test="searchList != null">
+			WHERE ${searchList} LIKE '%'||#{searchItem}||'%'
+		</if>
+	</select>
 </mapper>

@@ -2,6 +2,8 @@ package global.sesoc.ConsolGame.Controller;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +105,14 @@ public class MemberController {
 		}
 		return "fail";
 	}
-	
+	@RequestMapping(value = "/listOfUser", method = RequestMethod.POST)
+	@ResponseBody
+	public List<ConsolUser> listOfUser(ConsolUser user, String searchList, String searchItem){
+		System.out.println(user);
+		List<ConsolUser> result = repo.selectAllUser(user,searchList,searchItem);
+		System.out.println(result);
+
+		return result;
+	}	
 	
 }
