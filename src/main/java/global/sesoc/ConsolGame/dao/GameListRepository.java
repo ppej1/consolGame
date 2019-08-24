@@ -86,7 +86,7 @@ public class GameListRepository {
 		map.put("searchItem", searchItem);
 		map.put("searchList", searchList);
 		map.put("lendConsol", lendConsol);
-		
+		map.put("status", "lent");
 		return mapper.selectAllLent(map);
 	}
 
@@ -107,6 +107,25 @@ public class GameListRepository {
 	public void checkDelayLendForAllLentBook() {
 		GameListMapper mapper = session.getMapper(GameListMapper.class);
 		mapper.checkDelayLendForAllLentBook();
+	}
+
+	public int returnDelayGame(LendConsol lendConsol) {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		Map<String, Object> map = new HashMap<>();
+		map.put("lendConsol", lendConsol);
+		map.put("after", "delay_returned ");
+		map.put("before", "delay");
+		return mapper.returnGame(map);
+	}
+
+	public ArrayList<LendConsolUserTitle> selectAllDelay(LendConsol lendConsol, String searchList, String searchItem) {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		Map<String, Object> map = new HashMap<>();
+		map.put("searchItem", searchItem);
+		map.put("searchList", searchList);
+		map.put("lendConsol", lendConsol);
+		map.put("status", "delayed");
+		return mapper.selectAllLent(map);
 	}
 
 

@@ -122,10 +122,11 @@
 		,username
 		,to_char(startdate, 'YYYY-MM-DD') AS startdate
 		,to_char(ENDDATE, 'YYYY-MM-DD') AS ENDDATE
+		,to_char(TO_DATE(sysdate,'YYYY-MM-DD') -  TO_DATE(ENDDATE, 'YYYY-MM-DD')) as RETURNDATE
 		from LendConsol full outer join consolgame using (GAMENUM)
            full outer join ConsolUser using(usernum)
 		WHERE
-			STATUS = 'lent'
+			STATUS = #{status}
 		<if test="searchList != null">
 			and ${searchList} LIKE '%'||#{searchItem}||'%'
 		</if>

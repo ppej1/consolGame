@@ -158,5 +158,22 @@ public class GameListController {
 		ArrayList<LendConsolUser> list = repo.selectAllUserlent(user);
 			System.out.println(list);
 		return list;
+	}
+	//연체 목록
+	@RequestMapping(value = "/listOfdelay", method = RequestMethod.POST)
+	@ResponseBody
+	public ArrayList<LendConsolUserTitle> listOfdelay(LendConsol lendConsol, String searchList, String searchItem){
+		repo.checkDelayLendForAllLentBook();
+		ArrayList<LendConsolUserTitle> list = repo.selectAllDelay(lendConsol,searchList,searchItem);
+		System.out.println(list);
+		return list;
+	}	
+	
+	//연체
+	@RequestMapping(value = "/returnDelayGame", method = RequestMethod.POST)
+	@ResponseBody
+	public String returnDelayGame(LendConsol lendConsol){
+		int result = repo.returnDelayGame(lendConsol);
+		return "sucess";
 	}	
 }
