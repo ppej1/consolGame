@@ -90,11 +90,11 @@
                      </tr>
                    </tfoot>
                    <tbody>
-                    
+
                    </tbody>
                  </table>
                </div>
-                <nav aria-label="Page navigation example">
+               <nav aria-label="Page navigation example">
                  <ul class="pagination justify-content-center">
 
                  </ul>

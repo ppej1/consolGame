@@ -35,34 +35,37 @@
        width: 60%;
 
      }
-     
-     .t1{
-     	width: 100px;
-     	height: 50px;
+
+     .t1 {
+       width: 100px;
+       height: 50px;
      }
-     .d1{
-        width: 400px;
-     	height: 50px;
+
+     .d1 {
+       width: 400px;
+       height: 50px;
      }
-     .t3{
-        width: 100px;
-     	height: 150px;
+
+     .t3 {
+       width: 100px;
+       height: 150px;
      }
-     .d3{
-        width: 400px;
-     	height: 150px;
+
+     .d3 {
+       width: 400px;
+       height: 150px;
      }
-     #gameinfoTb{
-     	margin: 0px auto;
+
+     #gameinfoTb {
+       margin: 0px auto;
      }
    </style>
    <script>
-   $(function(){
-	 $("#lend").on('click',function(){
-		 $("#lentform").submit();
-	 })  
-   })
-   
+     $(function () {
+       $("#lend").on('click', function () {
+         $("#lentform").submit();
+       })
+     })
    </script>
  </head>
 
@@ -124,32 +127,32 @@
                  <tr>
                    <td class="t1">대여가능 : ${game.status} </td>
                    <td class="d1">
-				<c:choose>
-				<c:when test="${game.status != 'lent' || game.status == null}">Y</c:when>
-				<c:otherwise>N</c:otherwise>
-				</c:choose>							
-					</td>		
+                     <c:choose>
+                       <c:when test="${game.status != 'lent' || game.status == null}">Y</c:when>
+                       <c:otherwise>N</c:otherwise>
+                     </c:choose>
+                   </td>
                  </tr>
                  <tr>
                    <td class="t1">대여신청 : </td>
                    <td class="d1">
-                   
-                   <c:if test="${not empty sessionScope.loginId }">
-                <c:choose>
-				<c:when test="${game.status != 'lent' || game.status == null}">
-				       <a href="#" id="lend" class="btn btn-primary btn-icon-split btn-sm">
-                       <span class="icon text-white-50">
-                         <i class="fas fa-flag"></i>
-                       </span>
-                       <span class="text">대여 하기</span>
-                     </a>
-                     	<form id ="lentform" action="reQuestlendGame" method="post">
-                     	<input type="hidden" name="gamenum" value="${game.gamenum}">
-                     	</form>
-				</c:when>
-				<c:otherwise></c:otherwise>
-				</c:choose>	
-						</c:if>
+
+                     <c:if test="${not empty sessionScope.loginId }">
+                       <c:choose>
+                         <c:when test="${game.status != 'lent' || game.status == null}">
+                           <a href="#" id="lend" class="btn btn-primary btn-icon-split btn-sm">
+                             <span class="icon text-white-50">
+                               <i class="fas fa-flag"></i>
+                             </span>
+                             <span class="text">대여 하기</span>
+                           </a>
+                           <form id="lentform" action="reQuestlendGame" method="post">
+                             <input type="hidden" name="gamenum" value="${game.gamenum}">
+                           </form>
+                         </c:when>
+                         <c:otherwise></c:otherwise>
+                       </c:choose>
+                     </c:if>
                    </td>
                  </tr>
                </table>

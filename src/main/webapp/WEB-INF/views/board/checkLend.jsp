@@ -7,7 +7,7 @@
  <head>
 
    <title>GameBill</title>
-      <jsp:include page="../model/header.jsp" flush="false" />
+   <jsp:include page="../model/header.jsp" flush="false" />
    <script src="resources/js/tw_checklent.js"></script>
 
 
@@ -31,10 +31,10 @@
          <jsp:include page="../model/topbar.jsp" flush="false" />
          <!-- End of Topbar -->
          <!-- Begin Page Content -->
-	<!--------------------------------------------------------------------------------------------------->
+         <!--------------------------------------------------------------------------------------------------->
 
 
-       <!-- Begin Page Content -->
+         <!-- Begin Page Content -->
          <div class="container-fluid">
 
            <!-- Page Heading -->
@@ -70,7 +70,7 @@
                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                    <thead>
                      <tr>
-                         <th>Rent Date</th>
+                       <th>Rent Date</th>
                        <th>Return Date</th>
                        <th>Image</th>
                        <th>GameType</th>
@@ -94,7 +94,7 @@
                  </table>
                </div>
                <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
+                 <ul class="pagination justify-content-center">
              </div>
            </div>
 
@@ -103,7 +103,7 @@
 
 
 
-	<!--------------------------------------------------------------------------------------------------->
+         <!--------------------------------------------------------------------------------------------------->
        </div>
        <!-- End of Main Content -->
        <!-- Footer -->

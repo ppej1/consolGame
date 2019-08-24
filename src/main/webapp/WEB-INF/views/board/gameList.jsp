@@ -72,7 +72,7 @@
                      <option value="genre">장르</option>
                      <option value="typename">게임기종</option>
                    </select>
-                   <input class="form-control" id="searchItem" type="text" >
+                   <input class="form-control" id="searchItem" type="text">
                    <button type="button" class="btn btn-primary btn-sm" id="searchBtn">Search</button>
                  </div>
                </div>
