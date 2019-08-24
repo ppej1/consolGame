@@ -160,7 +160,7 @@ function into() {
 	         }else{
 	        	 tag += '<td></td>';
 	         }
-	         tag += '<td style="background-image:url(resources/img/game/' + item.imageurl + ')"></td>';
+	         tag += '<td style="background-image:url(resources/img/game/' + item.imageurl + '); background-size: cover;"></td>';
 	         tag += ' <td>'+item.typename+'</td>';
 	         tag += '<td>'+item.gametitle+'</td>';
 	         if(item.status == "lent"){

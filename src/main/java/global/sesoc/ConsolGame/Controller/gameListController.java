@@ -70,7 +70,6 @@ public class GameListController {
 	public String gamedetail(ConsolGame consol, Model model){
 		repo.checkDelayLendForAllLentBook();
 		ConsolGameStatusVO result = repo.selectOneGame(consol);
-		System.out.println(result);
 		model.addAttribute("game",result);
 		return "board/gameDetail";
 	}
@@ -154,9 +153,7 @@ public class GameListController {
 	public ArrayList<LendConsolUser> checkLend(LendConsolUser user, HttpSession session){
 		repo.checkDelayLendForAllLentBook();
 		user.setUsernum((String)session.getAttribute("loginnum"));
-		System.out.println(user);
 		ArrayList<LendConsolUser> list = repo.selectAllUserlent(user);
-			System.out.println(list);
 		return list;
 	}
 	//연체 목록
@@ -165,7 +162,6 @@ public class GameListController {
 	public ArrayList<LendConsolUserTitle> listOfdelay(LendConsol lendConsol, String searchList, String searchItem){
 		repo.checkDelayLendForAllLentBook();
 		ArrayList<LendConsolUserTitle> list = repo.selectAllDelay(lendConsol,searchList,searchItem);
-		System.out.println(list);
 		return list;
 	}	
 	
@@ -173,6 +169,7 @@ public class GameListController {
 	@RequestMapping(value = "/returnDelayGame", method = RequestMethod.POST)
 	@ResponseBody
 	public String returnDelayGame(LendConsol lendConsol){
+		System.out.println(lendConsol);
 		int result = repo.returnDelayGame(lendConsol);
 		return "sucess";
 	}	

@@ -114,7 +114,7 @@ public class GameListRepository {
 		Map<String, Object> map = new HashMap<>();
 		map.put("lendConsol", lendConsol);
 		map.put("after", "delay_returned ");
-		map.put("before", "delay");
+		map.put("before", "delayed");
 		return mapper.returnGame(map);
 	}
 

@@ -96,6 +96,14 @@
      
 		navSet(totalPageCount);
 		tagSet(data,startPageGroup,endPageGroup);
+		
+		 $(".a_tag").on('click',function(){
+			 var currentItem = $(this).attr("data-value");
+			 location.href ="gamedetail?gamenum="+currentItem;
+			 
+		 });
+
+		
  
 		
 	       $(".btn").on('click',function(){
@@ -143,8 +151,7 @@
  		 
 			if (index>=startPageGroup && index<endPageGroup) {
 	             tag += '<tr>';
-	             tag += '<td style="background-image:url(resources/img/game/' + item.imageurl +
-	               ')"><a href ="gamedetail?gamenum=' + item.gamenum + '"></a></td>';
+	             tag += '<td class="a_tag"data-value="' + item.gamenum + '" style="background-image:url(resources/img/game/' + item.imageurl + '); background-size: cover;"></td>';
 	             tag += '<td><a href ="gamedetail?gamenum=' + item.gamenum + '">' + item.gametitle + '</a></td>';
 	             tag += '<td>' + item.production + '</td>';
 	             tag += '<td>' + item.typename + '</td>';
