@@ -9,6 +9,7 @@
   <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 
 
+
   <!-- Bootstrap core JavaScript-->
   <script src="resources/js/jquery-3.4.1.js"></script>
   <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -18,7 +19,10 @@
 
   <!-- Custom scripts for all pages-->
   <script src="resources/js/sb-admin-2.min.js"></script>
-
+  
+  <!-- TW cosutom css-->
+  <link href="resources/css/boardList_tw.css" rel="stylesheet">
+  
 <script>
 $(function(){
 	var link = document.URL.substring(document.URL.lastIndexOf("/") + 1, document.URL.length);

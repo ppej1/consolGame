@@ -1,0 +1,49 @@
+     #returnBtn {
+       width: 100%
+     }
+
+     td {
+       text-align: center;
+     }
+
+     #selectDate,
+     #searchItem,
+     #searchList,
+     #countPerPage{
+       width: 30%;
+       display: inline-block;
+       height: 2em
+     }
+     #search,
+     .col {
+
+       margin: 0px;
+       padding: 10px;
+     }
+
+     #search {
+       text-align: right;
+     }
+     
+     
+     #DataTableCard {
+       width: 100%;
+       margin: 0px auto;
+     }
+
+     .card-body {
+       margin: 0px auto;
+       width: 95%;
+       padding-top: 10px;
+     }
+
+     tbody {
+       text-align: center;
+     }
+
+     .container {
+       max-width: 1820px;
+       margin: 5px;
+       width: 100%;
+
+     }
