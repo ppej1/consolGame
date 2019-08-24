@@ -23,6 +23,24 @@
 	
 	<context:component-scan base-package="global.sesoc.ConsolGame" />
 	
-	
+	<beans:bean id="LoginInterceptor" class="global.sesoc.ConsolGame.interceptor.LoginInterceptor"/>
+		<interceptors>
+			<interceptor>
+			<mapping path="/checkLend" />
+			<mapping path="/lendList" />
+			<mapping path="/lendRequestList" />
+			<mapping path="/overdueList" />
+			<mapping path="/reQuestlendGame" />
+			<mapping path="/requestGame" />
+			<mapping path="/confirmRequest" />
+			<mapping path="/listOfLent" />
+			<mapping path="/returnGame" />
+			<mapping path="/checkLend" />
+			<mapping path="/listOfdelay" />
+			<mapping path="/returnDelayGame" />
+			<beans:ref bean="LoginInterceptor"/>
+		</interceptor>	
+		</interceptors>
+
 	
 </beans:beans>
