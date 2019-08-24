@@ -9,10 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import global.sesoc.ConsolGame.dao.MemberRepository;
 import global.sesoc.ConsolGame.dto.ConsolUser;
+import global.sesoc.ConsolGame.dto.LendConsol;
 import global.sesoc.ConsolGame.util.FileService;
 
 @Controller
@@ -88,5 +90,20 @@ public class MemberController {
 			return "redirect:/index";
 		}
 		return "modify";
-	}	
+	}
+	
+	
+	@RequestMapping(value = "/confirmUserId", method = RequestMethod.POST)
+	@ResponseBody
+	public String confirmUserId(ConsolUser user){
+		System.out.println(user);
+		ConsolUser result = repo.confirmUserId(user);
+		System.out.println(result);
+		if (result == null) {
+			return "success";
+		}
+		return "fail";
+	}
+	
+	
 }

@@ -32,4 +32,11 @@ public class MemberRepository {
 	}
 
 
+	public ConsolUser confirmUserId(ConsolUser user) {
+		MemberMapper mapper  = session.getMapper(MemberMapper.class);
+
+		return mapper.confirmUserId(user);
+	}
+
+
 }

@@ -74,6 +74,12 @@
 		userid = #{userid} 
 	
 	</update>
-	
+	<select id="confirmUserId" parameterType="ConsolUser" resultType="ConsolUser">
+	select
+		userid
+	from CONSOLUSER
+	where
+	userid = #{userid}
+	</select>
 	
 </mapper>

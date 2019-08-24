@@ -10,4 +10,6 @@ public interface MemberMapper {
 
 	int updateUser(ConsolUser user);
 
+	ConsolUser confirmUserId(ConsolUser user);
+
 }
