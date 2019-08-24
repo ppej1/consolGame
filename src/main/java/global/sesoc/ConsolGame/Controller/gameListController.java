@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import global.sesoc.ConsolGame.dao.GameListRepository;
 import global.sesoc.ConsolGame.dto.ConsolGame;
+import global.sesoc.ConsolGame.dto.ConsolGameStatusVO;
 import global.sesoc.ConsolGame.dto.LendConsol;
+import global.sesoc.ConsolGame.dto.LendConsolUser;
+import global.sesoc.ConsolGame.dto.LendConsolUserTitle;
 
 @Controller
 public class GameListController {
@@ -23,50 +26,52 @@ public class GameListController {
 	/*이동 */
 	@RequestMapping(value = "/gameList", method = RequestMethod.GET)
 	public String gameList(){
+		repo.checkDelayLendForAllLentBook();
 		
 		return "board/gameList";
 	}
 	
 	@RequestMapping(value = "/disboard", method = RequestMethod.GET)
 	public String disboard(){
-		
+		repo.checkDelayLendForAllLentBook();
 		return "board/disboard";
 	}
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 	public String chart(){
-		
+		repo.checkDelayLendForAllLentBook();
 		return "board/chart";
 	}	
 	@RequestMapping(value = "/checkLend", method = RequestMethod.GET)
 	public String checkLend(){
-		
+		repo.checkDelayLendForAllLentBook();
 		return "board/checkLend";
 	}
 	@RequestMapping(value = "/lendList", method = RequestMethod.GET)
 	public String lendList(){
-		
+		repo.checkDelayLendForAllLentBook();
 		return "board/lendList";
 	}
 	@RequestMapping(value = "/lendRequestList", method = RequestMethod.GET)
 	public String lendRequestList(){
-		
+		repo.checkDelayLendForAllLentBook();
 		return "board/lendRequestList";
 	}
 	@RequestMapping(value = "/overdueList", method = RequestMethod.GET)
 	public String overdueList(){
-		
+		repo.checkDelayLendForAllLentBook();
 		return "board/overdueList";
 	}
 	@RequestMapping(value = "/userInfo", method = RequestMethod.GET)
 	public String userInfo(){
-		
+		repo.checkDelayLendForAllLentBook();
 		return "board/userInfo";
 	}
 	@RequestMapping(value = "/gamedetail", method = RequestMethod.GET)
 	public String gamedetail(ConsolGame consol, Model model){
-		ConsolGame result = repo.selectOneGame(consol);
-		model.addAttribute("game",result);
+		repo.checkDelayLendForAllLentBook();
+		ConsolGameStatusVO result = repo.selectOneGame(consol);
 		System.out.println(result);
+		model.addAttribute("game",result);
 		return "board/gameDetail";
 	}
 	
@@ -75,8 +80,8 @@ public class GameListController {
 	
 	@RequestMapping(value = "/reQuestlendGame", method = RequestMethod.POST)
 	public String reQuestlendGame(LendConsol lend, HttpSession session){
+		repo.checkDelayLendForAllLentBook();
 		lend.setUsernum((String) session.getAttribute("loginnum"));
-		System.out.println(lend);
 		int result= repo.reQuestlendGame(lend);
 		if (result ==1 ) {
 			return "redirect:/gameList";
@@ -100,19 +105,21 @@ public class GameListController {
 	
 	
 	//ajax 
-	//게임 릿트 
+	//게임 리스트 
 	@RequestMapping(value = "/listOfGame", method = RequestMethod.POST)
 	@ResponseBody
-	public ArrayList<ConsolGame> listOfGame(ConsolGame consolGame, String searchList, String searchItem){
+	public ArrayList<ConsolGameStatusVO> listOfGame(ConsolGame consolGame, String searchList, String searchItem){
+		repo.checkDelayLendForAllLentBook();
+		ArrayList<ConsolGameStatusVO> list = repo.selectAll(consolGame,searchList,searchItem);
 
-		ArrayList<ConsolGame> list = repo.selectAll(consolGame,searchList,searchItem);
 		return list;
 	}
 	//대여 신청 목록
 	@RequestMapping(value = "/requestGame", method = RequestMethod.POST)
 	@ResponseBody
-	public ArrayList<LendConsol> requestGame(ConsolGame consolGame, String searchList, String searchItem){
-		ArrayList<LendConsol> list = repo.RequestList(consolGame,searchList,searchItem);
+	public ArrayList<LendConsolUserTitle> requestGame(ConsolGame consolGame, String searchList, String searchItem){
+		repo.checkDelayLendForAllLentBook();
+		ArrayList<LendConsolUserTitle> list = repo.RequestList(consolGame,searchList,searchItem);
 		return list;
 	}
 	
@@ -120,20 +127,36 @@ public class GameListController {
 	@RequestMapping(value = "/confirmRequest", method = RequestMethod.POST)
 	@ResponseBody
 	public String confirmRequest(LendConsol lendConsol, String selectYN, String selectDate){
+		repo.checkDelayLendForAllLentBook();
 		int result = repo.confirmRequest(lendConsol,selectYN,selectDate);
-		
-		
 		return "success";
 	}
 	
 	// 대여 목록
 	@RequestMapping(value = "/listOfLent", method = RequestMethod.POST)
 	@ResponseBody
-	public ArrayList<LendConsol> listOfLent(LendConsol lendConsol, String searchList, String searchItem){
-		System.out.println("abc : " + lendConsol);
-		ArrayList<LendConsol> list = repo.selectAllLent(lendConsol,searchList,searchItem);
-		System.out.println(list);
+	public ArrayList<LendConsolUserTitle> listOfLent(LendConsol lendConsol, String searchList, String searchItem){
+		repo.checkDelayLendForAllLentBook();
+		ArrayList<LendConsolUserTitle> list = repo.selectAllLent(lendConsol,searchList,searchItem);
 		return list;
 	}
+	// 대여 목록 - 반납
+	@RequestMapping(value = "/returnGame", method = RequestMethod.POST)
+	@ResponseBody
+	public String returnGame(LendConsol lendConsol){
+		int result = repo.returnGame(lendConsol);
+		return "sucess";
+	}	
 	
+	//대여 이력 조회
+	@RequestMapping(value = "/checkLend", method = RequestMethod.POST)
+	@ResponseBody
+	public ArrayList<LendConsolUser> checkLend(LendConsolUser user, HttpSession session){
+		repo.checkDelayLendForAllLentBook();
+		user.setUsernum((String)session.getAttribute("loginnum"));
+		System.out.println(user);
+		ArrayList<LendConsolUser> list = repo.selectAllUserlent(user);
+			System.out.println(list);
+		return list;
+	}	
 }

@@ -4,25 +4,34 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import global.sesoc.ConsolGame.dto.ConsolGame;
+import global.sesoc.ConsolGame.dto.ConsolGameStatusVO;
 import global.sesoc.ConsolGame.dto.LendConsol;
+import global.sesoc.ConsolGame.dto.LendConsolUser;
+import global.sesoc.ConsolGame.dto.LendConsolUserTitle;
 
 public interface GameListMapper {
 
-	ArrayList<ConsolGame> selectAll(Map<String, Object> map);
+	ArrayList<ConsolGameStatusVO> selectAll(Map<String, Object> map);
 
-	ConsolGame selectOneGame(ConsolGame consol);
+	ConsolGameStatusVO selectOneGame(ConsolGame consol);
 
 	int reQuestlendGame(LendConsol lend);
 
-	ArrayList<LendConsol> RequestList(Map<String, Object> map);
+	ArrayList<LendConsolUserTitle> RequestList(Map<String, Object> map);
 
 	int confirmRequest(Map<String, Object> map);
 
 	LendConsol selectlentGame(LendConsol lendConsol);
 
-	int chaingOtherRequest(LendConsol gamenum);
+	int chaingOtherRequest(Map<String, Object> map);
 
-	ArrayList<LendConsol> selectAllLent(Map<String, Object> map);
+	ArrayList<LendConsolUserTitle> selectAllLent(Map<String, Object> map);
+
+	int returnGame(Map<String, Object> map);
+
+	ArrayList<LendConsolUser> selectAllUserlent(LendConsolUser user);
+
+	void checkDelayLendForAllLentBook();
 
 
 }

@@ -9,13 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import global.sesoc.ConsolGame.dto.ConsolGame;
+import global.sesoc.ConsolGame.dto.ConsolGameStatusVO;
 import global.sesoc.ConsolGame.dto.LendConsol;
+import global.sesoc.ConsolGame.dto.LendConsolUser;
+import global.sesoc.ConsolGame.dto.LendConsolUserTitle;
 @Repository
 public class GameListRepository {
 	@Autowired
 	SqlSession session;
 	
-	public ArrayList<ConsolGame> selectAll(ConsolGame consolGame, String searchList, String searchItem) {
+	public ArrayList<ConsolGameStatusVO> selectAll(ConsolGame consolGame, String searchList, String searchItem) {
 		GameListMapper mapper = session.getMapper(GameListMapper.class);
 		
 		Map<String, Object> map = new HashMap<>();
@@ -28,7 +31,7 @@ public class GameListRepository {
 		return mapper.selectAll(map);
 	}
 
-	public ConsolGame selectOneGame(ConsolGame consol) {
+	public ConsolGameStatusVO selectOneGame(ConsolGame consol) {
 		GameListMapper mapper = session.getMapper(GameListMapper.class);
 		return mapper.selectOneGame(consol);
 	}
@@ -39,7 +42,7 @@ public class GameListRepository {
 		return mapper.reQuestlendGame(lend);
 	}
 
-	public ArrayList<LendConsol> RequestList(ConsolGame consolGame, String searchList, String searchItem) {
+	public ArrayList<LendConsolUserTitle> RequestList(ConsolGame consolGame, String searchList, String searchItem) {
 		GameListMapper mapper = session.getMapper(GameListMapper.class);
 		Map<String, Object> map = new HashMap<>();
 		map.put("searchItem", searchItem);
@@ -63,19 +66,21 @@ public class GameListRepository {
 		map.put("selectDate", selectDate);
 		
 		int result = mapper.confirmRequest(map);
-		System.out.println(result);
 		if (result == 1) {
 			if (lendConsol.getStatus() =="lent") {
 				LendConsol gamenum = mapper.selectlentGame(lendConsol);
 				gamenum.setLend(lendConsol.getLend());
-				int ok = mapper.chaingOtherRequest(gamenum); 
+				map.put("gamenum",gamenum);
+				map.put("after", "rejected");
+				map.put("before", "reserved");
+				int ok = mapper.chaingOtherRequest(map); 
 				return ok;
 			}
 		}
 		return result;
 	}
 
-	public ArrayList<LendConsol> selectAllLent(LendConsol lendConsol, String searchList, String searchItem) {
+	public ArrayList<LendConsolUserTitle> selectAllLent(LendConsol lendConsol, String searchList, String searchItem) {
 		GameListMapper mapper = session.getMapper(GameListMapper.class);
 		Map<String, Object> map = new HashMap<>();
 		map.put("searchItem", searchItem);
@@ -83,6 +88,25 @@ public class GameListRepository {
 		map.put("lendConsol", lendConsol);
 		
 		return mapper.selectAllLent(map);
+	}
+
+	public int returnGame(LendConsol lendConsol) {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		Map<String, Object> map = new HashMap<>();
+		map.put("lendConsol", lendConsol);
+		map.put("after", "returned");
+		map.put("before", "lent");
+		return mapper.returnGame(map); 
+	}
+
+	public ArrayList<LendConsolUser> selectAllUserlent(LendConsolUser user) {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		return mapper.selectAllUserlent(user); 
+	}
+
+	public void checkDelayLendForAllLentBook() {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		mapper.checkDelayLendForAllLentBook();
 	}
 
 

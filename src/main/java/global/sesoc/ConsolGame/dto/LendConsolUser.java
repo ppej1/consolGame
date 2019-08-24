@@ -7,18 +7,17 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ConsolUser {
+public class LendConsolUser {
+	int lend;
+	int gamenum;
 	String usernum;
-	String userid;
-	String  userpwd;
-	String  birthdate;
+	String startdate;
+	String enddate;
+	String returndate;
+	String status;
+	String gametitle;
+	String typename;
 	String username; 
-	String email;
-	String  tel1;
-	String tel2;
-	String tel3;
-	String imageurl;
-    int point; 
-    int  userlevel;
+	String imageurl; 
 
 }

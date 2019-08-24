@@ -6,7 +6,10 @@
 	<typeAliases>
 		<typeAlias type="global.sesoc.ConsolGame.dto.ConsolGame" alias="ConsolGame"/>
 		<typeAlias type="global.sesoc.ConsolGame.dto.ConsolUser" alias="ConsolUser"/>
-		<typeAlias type="global.sesoc.ConsolGame.dto.LendConsol" alias="LendConsol"/>	
+		<typeAlias type="global.sesoc.ConsolGame.dto.LendConsol" alias="LendConsol"/>
+		<typeAlias type="global.sesoc.ConsolGame.dto.ConsolGameStatusVO" alias="ConsolGameStatusVO"/>
+		<typeAlias type="global.sesoc.ConsolGame.dto.LendConsolUserTitle" alias="LendConsolUserTitle"/>	
+		<typeAlias type="global.sesoc.ConsolGame.dto.LendConsolUser" alias="LendConsolUser"/>
 	</typeAliases>
 	
 	<mappers>

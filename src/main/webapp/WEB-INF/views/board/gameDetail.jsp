@@ -122,11 +122,11 @@
                    <td class="d3">${game.content}</td>
                  </tr>
                  <tr>
-                   <td class="t1">대여가능 : </td>
+                   <td class="t1">대여가능 : ${game.status} </td>
                    <td class="d1">
 				<c:choose>
-				<c:when test="${game.lend.status == 'delayed' || game.lend.status == 'lent'}">N</c:when>
-				<c:otherwise>Y</c:otherwise>
+				<c:when test="${game.status != 'lent' || game.status == null}">Y</c:when>
+				<c:otherwise>N</c:otherwise>
 				</c:choose>							
 					</td>		
                  </tr>
@@ -136,9 +136,8 @@
                    
                    <c:if test="${not empty sessionScope.loginId }">
                 <c:choose>
-				<c:when test="${game.lend.status == 'delayed' || game.lend.status == 'lent'}"></c:when>
-				<c:otherwise>
-                     <a href="#" id="lend" class="btn btn-primary btn-icon-split btn-sm">
+				<c:when test="${game.status != 'lent' || game.status == null}">
+				       <a href="#" id="lend" class="btn btn-primary btn-icon-split btn-sm">
                        <span class="icon text-white-50">
                          <i class="fas fa-flag"></i>
                        </span>
@@ -147,7 +146,8 @@
                      	<form id ="lentform" action="reQuestlendGame" method="post">
                      	<input type="hidden" name="gamenum" value="${game.gamenum}">
                      	</form>
-				</c:otherwise>
+				</c:when>
+				<c:otherwise></c:otherwise>
 				</c:choose>	
 						</c:if>
                    </td>

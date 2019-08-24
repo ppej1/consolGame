@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ConsolGame {
+public class ConsolGameStatusVO {
 	int gamenum;
 	String gametitle;
 	String production;
@@ -17,4 +17,6 @@ public class ConsolGame {
 	String imageurl; 
 	String genre;
 	String typename;
+	String status;
+	String username; 
 }
