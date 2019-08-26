@@ -32,15 +32,15 @@ public class GameListController {
 	}
 	
 	@RequestMapping(value = "/disboard", method = RequestMethod.GET)
-	public String disboard(){
+	public String disboard(Model model){
 		repo.checkDelayLendForAllLentBook();
+		int userCount = repo.countUser();
+		int newuserCount = repo.countNewUser();
+		model.addAttribute("userCount", userCount);
+		model.addAttribute("newuserCount", newuserCount);
+		System.out.println(userCount +","+ newuserCount);
 		return "board/disboard";
 	}
-	@RequestMapping(value = "/chart", method = RequestMethod.GET)
-	public String chart(){
-		repo.checkDelayLendForAllLentBook();
-		return "board/chart";
-	}	
 	@RequestMapping(value = "/checkLend", method = RequestMethod.GET)
 	public String checkLend(){
 		repo.checkDelayLendForAllLentBook();

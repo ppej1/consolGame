@@ -128,6 +128,18 @@ public class GameListRepository {
 		return mapper.selectAllLent(map);
 	}
 
+	public int countUser() {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		return mapper.countUser();
+	}
+
+	public int countNewUser() {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		return mapper.countNewUser();
+	}
+
+
+
 
 
 }

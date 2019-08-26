@@ -33,5 +33,9 @@ public interface GameListMapper {
 
 	void checkDelayLendForAllLentBook();
 
+	int countUser();
+
+	int countNewUser();
+
 
 }

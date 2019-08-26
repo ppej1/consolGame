@@ -171,6 +171,13 @@
 			&lt; to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd')
 	</update>		
 
+	<select id="countUser" resultType="java.lang.Integer">
+	select count(*) as userCount from CONSOLUSER
+	</select>
+	<select id="countNewUser" resultType="java.lang.Integer">
+	select count(*)as userCount from CONSOLUSER where to_char(registerdate, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
+	</select>
+
 
 	
 </mapper>
