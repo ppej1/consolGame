@@ -16,6 +16,7 @@ CREATE TABLE consoluser
     imageurl VARCHAR2(200) ,
     point number default 0,
     userlevel number default 1
+    REGISTERDATE date default sysdate
 );
 
 CREATE TABLE CONSOLGAME
