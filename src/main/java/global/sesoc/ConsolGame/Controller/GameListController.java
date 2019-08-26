@@ -36,6 +36,10 @@ public class GameListController {
 		repo.checkDelayLendForAllLentBook();
 		int userCount = repo.countUser();
 		int newuserCount = repo.countNewUser();
+		int consolGamecount = repo.countConsol();
+		int reservedCount = repo.countreserved();
+		model.addAttribute("reservedCount", reservedCount);
+		model.addAttribute("consolGamecount", consolGamecount);
 		model.addAttribute("userCount", userCount);
 		model.addAttribute("newuserCount", newuserCount);
 		System.out.println(userCount +","+ newuserCount);

@@ -37,5 +37,9 @@ public interface GameListMapper {
 
 	int countNewUser();
 
+	int countConsol();
+
+	int countreserved();
+
 
 }

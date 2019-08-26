@@ -172,12 +172,17 @@
 	</update>		
 
 	<select id="countUser" resultType="java.lang.Integer">
-	select count(*) as userCount from CONSOLUSER
+	select count(*) from CONSOLUSER
 	</select>
 	<select id="countNewUser" resultType="java.lang.Integer">
-	select count(*)as userCount from CONSOLUSER where to_char(registerdate, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
+	select count(*) from CONSOLUSER where to_char(registerdate, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
 	</select>
-
+	<select id="countConsol" resultType="java.lang.Integer">
+	select count(*) from CONSOLGAME
+	</select>
+	<select id="countreserved" resultType="java.lang.Integer">
+	select count(*) from LENDCONSOL where STATUS = 'reserved'
+	</select>
 
 	
 </mapper>

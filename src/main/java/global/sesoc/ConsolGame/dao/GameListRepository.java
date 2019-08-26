@@ -138,6 +138,16 @@ public class GameListRepository {
 		return mapper.countNewUser();
 	}
 
+	public int countConsol() {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		return mapper.countConsol();
+	}
+
+	public int countreserved() {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		return mapper.countreserved();
+	}
+
 
 
 
