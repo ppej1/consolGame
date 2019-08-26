@@ -59,24 +59,24 @@ width: 100%;
 					  <div class="carousel-inner" role="listbox">
 					    <!--First slide-->
 					    <div class="carousel-item active">
-					      <img class="d-block w-100" src="resources/img/software_switch_main_aea2a.jpg"
-					        alt="First slide">
+					      <a href="gamedetail?gamenum=23"><img class="d-block w-100" src="resources/img/software_switch_main_aea2a.jpg"
+					        alt="First slide"></a>
 					    </div>
 					    <!--/First slide-->
 					    <!--Second slide-->
 					    <div class="carousel-item">
-					      <img class="d-block w-100" src="resources/img/software_switch_main_anvya.jpg"
-					        alt="Second slide">
+					      <a href="gamedetail?gamenum=22"><img class="d-block w-100" src="resources/img/software_switch_main_anvya.jpg"
+					        alt="Second slide"></a>
 					    </div>
 					    <!--/Second slide-->
 					    <!--Third slide-->
 					    <div class="carousel-item">
-					      <img class="d-block w-100" src="resources/img/software_switch_main_baaqa.jpg"
-					        alt="Third slide">
+					      <a href="gamedetail?gamenum=24"><img class="d-block w-100" src="resources/img/software_switch_main_baaqa.jpg"
+					        alt="Third slide"></a>
 					    </div>
 					    <div class="carousel-item">
-					      <img class="d-block w-100" src="resources/img/software_switch_main_splatoon2.jpg"
-					        alt="Fourth slide">
+					      <a href="gamedetail?gamenum=25"><img class="d-block w-100" src="resources/img/software_switch_main_splatoon2.jpg"
+					        alt="Fourth slide"></a>
 					    </div>
 					    <!--/Third slide-->
 					  </div>

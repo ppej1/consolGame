@@ -47,12 +47,6 @@
 
 
 		<!-- Divider -->
-		<hr class="sidebar-divider">
-		<!-- Heading -->
-		<div class="sidebar-heading">Addons</div>
-		<!-- Nav Item - Charts -->
-		<li class="nav-item" id="ChartsNav"><a class="nav-link" href="chart"> <i class="fas fa-fw fa-chart-area"></i>
-				<span>Charts</span></a></li>
 		<c:if test="${sessionScope.loginLevel == 0}">
 			<!-- Divider -->
 			<hr class="sidebar-divider">

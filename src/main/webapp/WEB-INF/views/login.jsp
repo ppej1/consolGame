@@ -30,7 +30,7 @@
   <script src="resources/js/sb-admin-2.min.js"></script>
   
    <!-- google Login-->
-
+  <link rel="shortcut icon" href="resources/img/chess.ico">
 <script>
 $(function(){
 	$("#login").on('click',function(){

@@ -22,7 +22,8 @@
   
   <!-- TW cosutom css-->
   <link href="resources/css/boardList_tw.css" rel="stylesheet">
-  
+  <link rel="shortcut icon" href="resources/img/chess.ico">
+
 <script>
 $(function(){
 	var link = document.URL.substring(document.URL.lastIndexOf("/") + 1, document.URL.length);

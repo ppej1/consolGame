@@ -30,6 +30,8 @@
 
   <!-- Custom scripts for all pages-->
   <script src="resources/js/sb-admin-2.min.js"></script>
+  
+    <link rel="shortcut icon" href="resources/img/chess.ico">
  <style>
  .bg-register-image{
   background-image: url("resources/img/user/${loginUser.imageurl}");

@@ -32,7 +32,7 @@
   <script src="resources/js/sb-admin-2.min.js"></script>
    <script src="resources/js/tw_register.js"></script> 
 
-  
+    <link rel="shortcut icon" href="resources/img/chess.ico">
   
   
   

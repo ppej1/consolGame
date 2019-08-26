@@ -56,7 +56,6 @@
 	       $(".returnBtn").on('click',function(){
 	    	  
 	    	   var currentItem = $(this).attr("data-value");
-	    	   alert(currentItem)
 	           var sendData = {
 	          		"lend": currentItem
 	             }
