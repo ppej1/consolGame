@@ -1,6 +1,7 @@
 package global.sesoc.ConsolGame.Controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import global.sesoc.ConsolGame.dao.GameListRepository;
 import global.sesoc.ConsolGame.dto.ConsolGame;
 import global.sesoc.ConsolGame.dto.ConsolGameStatusVO;
+import global.sesoc.ConsolGame.dto.GameRank;
 import global.sesoc.ConsolGame.dto.LendConsol;
 import global.sesoc.ConsolGame.dto.LendConsolUser;
 import global.sesoc.ConsolGame.dto.LendConsolUserTitle;
@@ -37,12 +39,25 @@ public class GameListController {
 		int userCount = repo.countUser();
 		int newuserCount = repo.countNewUser();
 		int consolGamecount = repo.countConsol();
+		int rendALLCount = repo.countAllLent();
 		int reservedCount = repo.countreserved();
+		int lentCount = repo.rentCount();
+		int returnedCount = repo.countReturned();
+		int delayedCount = repo.countDelayed();
+		int delayedReturnCount = repo.countDelayReturened();
+		int allRentCount = lentCount+returnedCount+delayedCount+delayedReturnCount;
+		List<GameRank> rank = repo.getRank();
+		
 		model.addAttribute("reservedCount", reservedCount);
 		model.addAttribute("consolGamecount", consolGamecount);
 		model.addAttribute("userCount", userCount);
 		model.addAttribute("newuserCount", newuserCount);
-		System.out.println(userCount +","+ newuserCount);
+		model.addAttribute("lentRate", ((lentCount+delayedCount)/(double)rendALLCount)*100);
+		model.addAttribute("reservedRate", (reservedCount/(double)rendALLCount)*100);
+		model.addAttribute("returnCount", (returnedCount/(double)allRentCount)*100);
+		model.addAttribute("delayedCount", (delayedCount/(double)allRentCount)*100);
+		model.addAttribute("delayedreturnCount", (delayedReturnCount/(double)(delayedReturnCount+delayedCount))*100);
+		model.addAttribute("rank",rank);
 		return "board/disboard";
 	}
 	@RequestMapping(value = "/checkLend", method = RequestMethod.GET)

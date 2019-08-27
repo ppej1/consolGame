@@ -10,6 +10,8 @@
 		<typeAlias type="global.sesoc.ConsolGame.dto.ConsolGameStatusVO" alias="ConsolGameStatusVO"/>
 		<typeAlias type="global.sesoc.ConsolGame.dto.LendConsolUserTitle" alias="LendConsolUserTitle"/>	
 		<typeAlias type="global.sesoc.ConsolGame.dto.LendConsolUser" alias="LendConsolUser"/>
+		<typeAlias type="global.sesoc.ConsolGame.dto.GameRank" alias="GameRank"/>
+		
 	</typeAliases>
 	
 	<mappers>

@@ -1,10 +1,12 @@
 package global.sesoc.ConsolGame.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import global.sesoc.ConsolGame.dto.ConsolGame;
 import global.sesoc.ConsolGame.dto.ConsolGameStatusVO;
+import global.sesoc.ConsolGame.dto.GameRank;
 import global.sesoc.ConsolGame.dto.LendConsol;
 import global.sesoc.ConsolGame.dto.LendConsolUser;
 import global.sesoc.ConsolGame.dto.LendConsolUserTitle;
@@ -40,6 +42,19 @@ public interface GameListMapper {
 	int countConsol();
 
 	int countreserved();
+
+	int countAllLent();
+
+	int rentCount();
+
+	int countReturned();
+
+	int countDelayed();
+
+	int countDelayReturened();
+
+	List<GameRank> getRank();
+
 
 
 }

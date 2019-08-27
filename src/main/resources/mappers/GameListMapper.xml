@@ -183,6 +183,27 @@
 	<select id="countreserved" resultType="java.lang.Integer">
 	select count(*) from LENDCONSOL where STATUS = 'reserved'
 	</select>
+	<select id="countAllLent" resultType="java.lang.Integer">
+	select count(*) from LENDCONSOL
+	</select>
+	<select id="rentCount" resultType="java.lang.Integer">
+	select count(*) from LENDCONSOL where STATUS = 'lent'
+	</select>	
+	<select id="countReturned" resultType="java.lang.Integer">
+	select count(*) from LENDCONSOL where STATUS = 'returned'
+	</select>	
+	<select id="countDelayed" resultType="java.lang.Integer">
+	select count(*) from LENDCONSOL where STATUS = 'delayed'
+	</select>	
+	<select id="countDelayReturened" resultType="java.lang.Integer">
+	select count(*) from LENDCONSOL where STATUS = 'delay_returned'
+	</select>
 
-	
+	<select id="getRank" resultType="GameRank">
+	select  gamenum, count(gamenum) as rank, gametitle 
+	from LENDCONSOL join CONSOLGAME 
+	using(gamenum) group by(gamenum,gametitle)  
+	order by count(gamenum) desc
+	</select>
+		
 </mapper>

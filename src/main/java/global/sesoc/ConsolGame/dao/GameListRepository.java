@@ -2,6 +2,7 @@ package global.sesoc.ConsolGame.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import global.sesoc.ConsolGame.dto.ConsolGame;
 import global.sesoc.ConsolGame.dto.ConsolGameStatusVO;
+import global.sesoc.ConsolGame.dto.GameRank;
 import global.sesoc.ConsolGame.dto.LendConsol;
 import global.sesoc.ConsolGame.dto.LendConsolUser;
 import global.sesoc.ConsolGame.dto.LendConsolUserTitle;
@@ -113,7 +115,7 @@ public class GameListRepository {
 		GameListMapper mapper = session.getMapper(GameListMapper.class);
 		Map<String, Object> map = new HashMap<>();
 		map.put("lendConsol", lendConsol);
-		map.put("after", "delay_returned ");
+		map.put("after", "delay_returned");
 		map.put("before", "delayed");
 		return mapper.returnGame(map);
 	}
@@ -147,6 +149,38 @@ public class GameListRepository {
 		GameListMapper mapper = session.getMapper(GameListMapper.class);
 		return mapper.countreserved();
 	}
+
+	public int countAllLent() {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		return mapper.countAllLent();
+	}
+
+	public int rentCount() {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		return mapper.rentCount();
+	}
+
+	public int countReturned() {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		return mapper.countReturned();
+	}
+
+	public int countDelayed() {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		return mapper.countDelayed();
+	}
+
+	public int countDelayReturened() {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		return mapper.countDelayReturened();
+	}
+
+	public List<GameRank> getRank() {
+		GameListMapper mapper = session.getMapper(GameListMapper.class);
+		return mapper.getRank();
+	}
+
+
 
 
 

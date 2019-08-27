@@ -125,25 +125,25 @@
                   <h6 class="m-0 font-weight-bold text-primary">정보 조회</h6>
                 </div>
                 <div class="card-body">
-                  <h4 class="small font-weight-bold">현재 대여 율<span class="float-right">30%</span></h4>
+                  <h4 class="small font-weight-bold">현재 대여 율<span class="float-right">${lentRate}%</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: ${lentRate}%" aria-valuenow="${lentRate}" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">반납 율<span class="float-right">40%</span></h4>
+                  <h4 class="small font-weight-bold">반납 율<span class="float-right">${returnCount}%</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: ${returnCount}%" aria-valuenow="${returnCount}" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">연체 율<span class="float-right">60%</span></h4>
+                  <h4 class="small font-weight-bold">연체 율<span class="float-right">${delayedCount}%</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" style="width: ${delayedCount}%" aria-valuenow="${delayedCount}" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">연체 인원 반납율 <span class="float-right">80%</span></h4>
+                  <h4 class="small font-weight-bold">연체 인원 반납율 <span class="float-right">${delayedreturnCount}%</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-info" role="progressbar" style="width: ${delayedreturnCount}%" aria-valuenow="${delayedreturnCount}" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">승인 대기<span class="float-right">Complete!</span></h4>
+                  <h4 class="small font-weight-bold">승인 대기<span class="float-right">${reservedRate}%</span></h4>
                   <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" role="progressbar" style="width: ${reservedRate}%" aria-valuenow="${reservedRate}" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
@@ -213,21 +213,39 @@
                   <div class="text-center">
                     <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
                   </div>
-                  <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-                </div>
-              </div>
+             <div class="card-body">
+               <div class="table-responsive">
+                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                   <thead>
+                     <tr>
+                       <th>No</th>
+                       <th>GameTitle</th>
+                       <th>Rent</th>
+                     </tr>
+                   </thead>
+                   <tfoot>
+                     <tr>
+                       <th>No</th>
+                       <th>GameTitle</th>
+                       <th>Rent</th>
+                     </tr>
+                   </tfoot>
+                   <tbody>
+						<c:forEach var="item" varStatus="i" begin="0" end="10" items="${rank}">
+					<tr>
+                       <td>${i.count}</td>
+                       <td>${item.gametitle}</td>
+                       <td>${item.rank}</td>
+                     </tr>
+						</c:forEach>
+                   </tbody>
+                 </table>
+               </div>
 
-              <!-- Approach -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                </div>
-                <div class="card-body">
-                  <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce CSS bloat and poor page performance. Custom CSS classes are used to create custom components and custom utility classes.</p>
-                  <p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap framework, especially the utility classes.</p>
-                </div>
+             </div>
+                 </div>
               </div>
-
+				<!--  -->
             </div>
           </div>
 
