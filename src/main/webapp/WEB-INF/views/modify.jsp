@@ -43,7 +43,16 @@
  <script>
  $(function(){
 		$("#crateUser").on('click',function(){
-			$("#userCreate").submit();
+			var inputpassword = $("#exampleInputPassword").val();
+			var respeatpassword = $("#exampleRepeatPassword").val();
+		
+			if (inputpassword.length>=3 && respeatpassword.length>=3) {
+				$("#userCreate").submit();
+			}else{
+				alert("비밀번호를 다시 입력해주세요");
+				
+			}
+			
 		});
 	});
  
@@ -127,7 +136,7 @@
 
 
 
-                <button class="btn btn-primary btn-user btn-block" id="crateUser">
+                <button class="btn btn-primary btn-user btn-block" id="crateUser" type="button">
                   Register Account
                 </button>
               </form>
