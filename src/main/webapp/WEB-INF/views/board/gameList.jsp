@@ -61,7 +61,11 @@
                      <option value="15">15</option>
                      <option value="20">20</option>
                    </select>
+                 <c:if test="${sessionScope.loginLevel == 0}">
+                     <button type="button" class="addbtn btn-primary btn-sm" id="addBtn">Add</button>
+                 </c:if>
                  </div>
+                 
                  <div class="col">
                  </div>
                  <div class="col-6" id="search">
@@ -108,7 +112,7 @@
                    </tbody>
                  </table>
                </div>
-
+			
                <nav aria-label="Page navigation example">
                  <ul class="pagination justify-content-center">
 
